@@ -11,9 +11,9 @@ import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 private fun iniList():ArrayList<Producto>
 {
     val tempList:ArrayList<Producto> = ArrayList()
-    tempList.add(0, Producto(1,"AS",23F, 23F,"Planta",""))
-    tempList.add(1, Producto(2,"SD",12F, 0.56F,"Planta",""))
-    tempList.add(2, Producto(3,"DF",23F, 23F,"Planta",""))
+    tempList.add(0, Producto(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","http://lorempixel.com/g/1366/768/food/"))
+    tempList.add(1, Producto(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","http://lorempixel.com/g/1366/768/technics/"))
+    tempList.add(2, Producto(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
     return tempList
 }
 
