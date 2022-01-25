@@ -18,8 +18,8 @@ private fun iniList():ArrayList<Producto>
 }
 
 class ProductList : Fragment() {
-    private var bind:FragmentProductListBinding?=null
-    private val valBind get()=bind!!
+    private var tempBinding:FragmentProductListBinding?=null
+    private val valBind get()=tempBinding!!
     private var productsList:ArrayList<Producto>?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +33,14 @@ class ProductList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        var inflateur = inflater.inflate(R.layout.fragment_product_list, container, false)
-        bind = FragmentProductListBinding.inflate(inflater, container, false)
+        tempBinding = FragmentProductListBinding.inflate(inflater, container, false)
         return valBind.root
-//        inflateur=
-//        return inflateur
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        bind=null
+        tempBinding=null
     }
 
     companion object {
