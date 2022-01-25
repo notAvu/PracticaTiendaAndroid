@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import com.example.practicatiendaandroid.Clases.Producto
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 
-private fun iniList():ArrayList<Producto>
+typealias ProdArrayList=ArrayList<Producto>
+
+private fun iniList():ProdArrayList
 {
-    val tempList:ArrayList<Producto> = ArrayList()
+    val tempList:ProdArrayList = ArrayList()
     tempList.add(0, Producto(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","http://lorempixel.com/g/1366/768/food/"))
     tempList.add(1, Producto(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","http://lorempixel.com/g/1366/768/technics/"))
     tempList.add(2, Producto(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
@@ -20,7 +22,7 @@ private fun iniList():ArrayList<Producto>
 class ProductList : Fragment() {
     private var tempBinding:FragmentProductListBinding?=null
     private val valBind get()=tempBinding!!
-    private var productsList:ArrayList<Producto>?=null
+    private var productsList:ProdArrayList?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
