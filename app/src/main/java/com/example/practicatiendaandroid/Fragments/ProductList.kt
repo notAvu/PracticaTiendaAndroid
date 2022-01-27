@@ -35,7 +35,6 @@ class ProductList : Fragment() {
     ): View? {
         tempBinding = FragmentProductListBinding.inflate(inflater, container, false)
         return valBind.root
-
     }
 
     override fun onDestroyView() {
