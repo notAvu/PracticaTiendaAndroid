@@ -37,7 +37,6 @@ class ProductList : Fragment() {
     ): View? {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
         return valBind.root
-
     }
 
     override fun onDestroyView() {
