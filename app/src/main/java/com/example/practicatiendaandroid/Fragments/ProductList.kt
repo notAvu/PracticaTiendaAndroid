@@ -20,8 +20,8 @@ private fun iniList():ProdArrayList
 }
 
 class ProductList : Fragment() {
-    private var tempBinding:FragmentProductListBinding?=null
-    private val valBind get()=tempBinding!!
+    private var auxBinding:FragmentProductListBinding?=null
+    private val valBind get()=auxBinding!!
     private var productsList:ProdArrayList?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,14 +35,14 @@ class ProductList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        tempBinding = FragmentProductListBinding.inflate(inflater, container, false)
+        auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
         return valBind.root
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        tempBinding=null
+        auxBinding=null
     }
 
     companion object {
