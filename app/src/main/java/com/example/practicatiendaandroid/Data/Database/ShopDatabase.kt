@@ -8,8 +8,8 @@ import com.example.practicatiendaandroid.Data.Entities.CartEntity
 import com.example.practicatiendaandroid.Data.Entities.ProductEntity
 
 @Database( entities = [ProductEntity::class, CartEntity::class], version = 1)
-abstract class Database : RoomDatabase() {
-    abstract fun productDao():ProductDao
-    abstract fun cartDao(): CartDao
+abstract class ShopDatabase : RoomDatabase() {
+    abstract fun getProductDao():ProductDao
+    abstract fun getCartDao(): CartDao
 
 }
