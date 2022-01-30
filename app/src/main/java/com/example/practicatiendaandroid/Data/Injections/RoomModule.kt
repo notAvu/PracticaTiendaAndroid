@@ -1,9 +1,10 @@
 package com.example.practicatiendaandroid.Data.Injections
 
-//import dagger.hilt.components.SingletonComponent
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-//@Module
-//@InstallIn(ApplicationComponent::class)
+@Module
+@InstallIn(SingletonComponent::class)
 object RoomModule {
-    //TODO revisar inyeccion de dependencias
 }
