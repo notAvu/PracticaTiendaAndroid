@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.practicatiendaandroid.Clases.Producto
+import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 
-typealias ProdArrayList=ArrayList<Producto>
+typealias ProdArrayList=ArrayList<Product>
 
 private fun iniList():ProdArrayList
 {
     val tempList:ProdArrayList = ArrayList()
-    tempList.add(0, Producto(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","http://lorempixel.com/g/1366/768/food/"))
-    tempList.add(1, Producto(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","http://lorempixel.com/g/1366/768/technics/"))
-    tempList.add(2, Producto(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
+    tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","http://lorempixel.com/g/1366/768/food/"))
+    tempList.add(1, Product(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","http://lorempixel.com/g/1366/768/technics/"))
+    tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
     return tempList
 }
 
