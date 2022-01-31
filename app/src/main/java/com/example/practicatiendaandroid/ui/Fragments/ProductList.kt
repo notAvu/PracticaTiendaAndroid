@@ -1,4 +1,4 @@
-package com.example.practicatiendaandroid.Fragments
+package com.example.practicatiendaandroid.ui.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,9 +10,9 @@ import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 
 typealias ProdArrayList=ArrayList<Product>
 
-private fun iniList():ProdArrayList
+private fun iniList(): ProdArrayList
 {
-    val tempList:ProdArrayList = ArrayList()
+    val tempList: ProdArrayList = ArrayList()
     tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","http://lorempixel.com/g/1366/768/food/"))
     tempList.add(1, Product(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","http://lorempixel.com/g/1366/768/technics/"))
     tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
@@ -22,12 +22,13 @@ private fun iniList():ProdArrayList
 class ProductList : Fragment() {
     private var auxBinding:FragmentProductListBinding?=null
     private val valBind get()=auxBinding!!
-    private var productsList:ProdArrayList?=null
+    private var productsList: ProdArrayList?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             productsList= iniList()
+
         }
     }
 

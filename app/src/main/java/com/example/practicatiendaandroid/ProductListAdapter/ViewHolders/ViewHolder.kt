@@ -1,4 +1,9 @@
 package com.example.practicatiendaandroid.ProductListAdapter.ViewHolders
 
-class ViewHolder {
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import com.example.practicatiendaandroid.databinding.ListElementLayoutBinding
+
+class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ListElementLayoutBinding.bind(view)
 }

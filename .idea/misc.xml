@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/fragment_product_list.xml" value="0.23802083333333332" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.275" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/fragment_product_list.xml" value="0.35260416666666666" />
