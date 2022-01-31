@@ -8,6 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container1"
+        android:name="com.example.practicatiendaandroid.Fragments.ProductList"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
