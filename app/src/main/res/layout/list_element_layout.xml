@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"/>
     <TextView
         android:layout_marginTop="17dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginStart="150dp"
         android:text="000.000€"
         android:id="@+id/list_element_product_product_price"
         android:layout_width="wrap_content"
