@@ -8,9 +8,12 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container1"
-        android:name="com.example.practicatiendaandroid.ui.Fragments.ProductList"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
         />
 </androidx.appcompat.widget.LinearLayoutCompat>

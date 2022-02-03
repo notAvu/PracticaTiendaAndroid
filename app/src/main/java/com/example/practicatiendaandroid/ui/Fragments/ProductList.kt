@@ -53,7 +53,7 @@ class ProductList : Fragment() {
 
     private fun onProductoSelected(productClicked: Product) {
         viewModel.productSelected.postValue(productClicked)
-    //TODO ver navigaationComponent
+        TODO("Ver navComponent")
     }
 
     override fun onDestroyView() {
