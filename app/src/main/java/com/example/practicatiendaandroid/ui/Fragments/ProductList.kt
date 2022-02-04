@@ -45,6 +45,7 @@ class ProductList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = LinearLayoutManager(view.context)
             adapter = ProductAdapter(productsList){onProductoSelected(it)}
@@ -53,7 +54,7 @@ class ProductList : Fragment() {
 
     private fun onProductoSelected(productClicked: Product) {
         viewModel.productSelected.postValue(productClicked)
-        TODO("Ver navComponent")
+        TODO("Ver navComponent (pasar solo el id cuando pases objetos)")
     }
 
     override fun onDestroyView() {
