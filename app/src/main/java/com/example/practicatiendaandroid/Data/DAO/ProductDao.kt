@@ -8,5 +8,7 @@ import com.example.practicatiendaandroid.Data.Entities.ProductEntity
 interface ProductDao {
     @Query("SELECT * FROM products_table")
     suspend fun getProductList():ArrayList<ProductEntity>
+//    @Query("SELECT * FROM products_table WHERE price<40")
+//    suspend fun getFilterPrice():ArrayList<ProductEntity>
 
 }

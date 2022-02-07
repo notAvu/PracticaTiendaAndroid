@@ -2,4 +2,5 @@
 <resources>
     <dimen name="TopMarginListElement">35dp</dimen>
     <dimen name="list_image_size">90dp</dimen>
+    <dimen name="detailsImageSize">200dp</dimen>
 </resources>

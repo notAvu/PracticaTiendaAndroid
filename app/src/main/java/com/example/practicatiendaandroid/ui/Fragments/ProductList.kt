@@ -16,7 +16,7 @@ private fun iniList(): ArrayList<Product>
 {
     val tempList:ArrayList<Product> = ArrayList()
     tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
-    tempList.add(1, Product(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","http://lorempixel.com/g/1366/768/technics/"))
+    tempList.add(1, Product(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
     tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
     tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
     tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
@@ -37,7 +37,7 @@ class ProductList : Fragment() {
 //        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
             productsList= iniList()
         return valBind.root
