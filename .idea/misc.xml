@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/cart_element_layout.xml" value="0.18854166666666666" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/fragment_details.xml" value="0.23802083333333332" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/fragment_product_list.xml" value="0.23802083333333332" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/material_card_product.xml" value="0.23802083333333332" />
