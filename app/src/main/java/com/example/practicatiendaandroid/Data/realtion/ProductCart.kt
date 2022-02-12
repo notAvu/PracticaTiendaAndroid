@@ -1,16 +1,10 @@
 package com.example.practicatiendaandroid.Data.realtion
 
-import androidx.room.Embedded
-import androidx.room.Relation
-import com.example.practicatiendaandroid.Clases.Product
+import androidx.room.Entity
 
+@Entity(primaryKeys = ["productId", "cartId"])
 data class ProductCart
     (
-    @Embedded val product: Product,
-//    @Relation
-//        (
-//        parentColumn = "idProduct"
-//        entityColumn="id"
-//        )
-//        val cart:Cart
-            )
+    val productId: Int,
+    val cartId: Int
+    )

@@ -1,14 +1,17 @@
 package com.example.practicatiendaandroid.ui.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
+import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 
@@ -27,6 +30,7 @@ private fun iniList(): ArrayList<Product>
 
 class ProductList : Fragment() {
     private lateinit var productsList: ArrayList<Product>
+    private lateinit var navController: NavController
     private val viewModel:ProductListVM by activityViewModels()
     private var auxBinding:FragmentProductListBinding?=null
     private val valBind get()=auxBinding!!
@@ -45,7 +49,8 @@ class ProductList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
+//        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
+        navController=findNavController()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = LinearLayoutManager(view.context)
             adapter = ProductAdapter(productsList){onProductoSelected(it)}
@@ -53,8 +58,11 @@ class ProductList : Fragment() {
     }
 
     private fun onProductoSelected(productClicked: Product) {
+//        if(!viewModel.productSelected.equals(productClicked))
+//        {
         viewModel.productSelected.postValue(productClicked)
-        TODO("Ver navComponent (pasar solo el id cuando pases objetos)")
+        navController.navigate(R.id.action_productList_to_detailsFragment)
+//        }
     }
 
     override fun onDestroyView() {

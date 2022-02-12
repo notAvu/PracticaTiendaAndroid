@@ -42,7 +42,8 @@
                 android:layout_marginTop="8dp"
                 android:text="500€"
                 android:textSize="20dp"
-                android:layout_marginStart="300dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginEnd="20dp"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 />

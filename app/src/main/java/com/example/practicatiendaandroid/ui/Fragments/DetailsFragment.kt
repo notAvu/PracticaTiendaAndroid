@@ -5,17 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
+import com.example.practicatiendaandroid.databinding.FragmentDetailsBinding
+import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
+import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
+import com.squareup.picasso.Picasso
 
 
 class DetailsFragment : Fragment() {
-
+    private val viewModel: ProductListVM by activityViewModels()
+    private var auxBinding: FragmentDetailsBinding?=null
+    private val valBind get()=auxBinding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
     }
 
     override fun onCreateView(
@@ -23,26 +29,21 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        auxBinding = FragmentDetailsBinding.inflate(inflater, container, false)
+//        productsList= iniList()
+        return valBind.root
     }
-
-    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment DetailsFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            DetailsFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val selected=viewModel.productSelected.value
+        valBind.apply {
+            fragmentDetailsTextViewProductName.text= selected?.productName ?: ""
+            fragmentDetailsTextViewProductUnitPrice.text= (selected?.unitPrice?:0).toString()
+            fragmentDetailsTextViewProductPrice.text= (selected?.price ?: 0).toString()
+            fragmentDetailsTextViewUnits.text=selected?.category ?: ""
+            Picasso.get().load(selected?.imageSrc).into(fragmentDetailsImageViewProductImage)
+        }
     }
+//    companion object {
+//    }
 }
