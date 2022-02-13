@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="dark_card_bg">#0B132B</color>
     <color name="purple_200">#6FFFE9</color>
     <color name="purple_500">#5BC0BE</color>
     <color name="purple_700">#1C2541</color>
