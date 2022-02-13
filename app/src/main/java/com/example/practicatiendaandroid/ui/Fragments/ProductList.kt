@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
@@ -19,11 +20,9 @@ private fun iniList(): ArrayList<Product>
 {
     val tempList:ArrayList<Product> = ArrayList()
     tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
-    tempList.add(1, Product(2,"Rustic Silk Bag",12F, 0.56F,"Clothing & Games","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
-    tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
-    tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
-    tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
-    tempList.add(2, Product(3,"Fantastic Plastic Shirt",42.5F, 23F,"Sports","http://lorempixel.com/g/640/200/city/"))
+    tempList.add(1, Product(2,"Peluche totoro uwu",12F, 0.56F,"Clothing & Games","https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"))
+    tempList.add(2, Product(3,"Silla gamer",223F, 223F,"Sports","https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"))
+    tempList.add(2, Product(3,"Silksong't",42.5F, 23F,"Sports","https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"))
 
     return tempList
 }
@@ -52,7 +51,7 @@ class ProductList : Fragment() {
 //        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
         navController=findNavController()
         valBind.fragmentProductListRecyclerview.apply {
-            layoutManager = LinearLayoutManager(view.context)
+            layoutManager = GridLayoutManager(view.context, 2)
             adapter = ProductAdapter(productsList){onProductoSelected(it)}
         }
     }
