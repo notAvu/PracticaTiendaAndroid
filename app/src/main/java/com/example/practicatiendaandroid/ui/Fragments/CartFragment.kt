@@ -5,56 +5,71 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
-//
-//// TODO: Rename parameter arguments, choose names that match
-//// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//private const val ARG_PARAM1 = "param1"
-//private const val ARG_PARAM2 = "param2"
+import com.example.practicatiendaandroid.databinding.CartElementLayoutBinding
+import com.example.practicatiendaandroid.databinding.FragmentCartBinding
+import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
+import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+private fun iniList(): ArrayList<Product>
+{
+    val tempList:ArrayList<Product> = ArrayList()
+    tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
+    tempList.add(1, Product(2,"Peluche totoro uwu",12F, 0.56F,"Clothing & Games","https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"))
+    tempList.add(2, Product(3,"Silla gamer",223F, 223F,"Sports","https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"))
+    tempList.add(2, Product(3,"Silksong't",42.5F, 23F,"Sports","https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"))
+
+    return tempList
+}
 class CartFragment : Fragment() {
-//    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-
+    private lateinit var productsList: ArrayList<Product>
+    private lateinit var navController: NavController
+    private val viewModel: ProductListVM by activityViewModels()
+    private var auxBinding: FragmentCartBinding?=null
+    private val valBind get()=auxBinding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        auxBinding = FragmentCartBinding.inflate(inflater, container, false)
+        productsList= iniList()
+        return valBind.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
+        navController=findNavController()
+        valBind.cartFragmentProductRecyclerView.apply {
+            layoutManager=LinearLayoutManager(view.context)
+            adapter=ProductAdapter(productsList){onProductoSelected(it)}
+        }
+//        valBind.fragmentProductListRecyclerview.apply {
+//            layoutManager = GridLayoutManager(view.context, 2)
+//            adapter = ProductAdapter(productsList){onProductoSelected(it)}
+//        }
     }
 
-    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment CartFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            CartFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
+    private fun onProductoSelected(productClicked: Product) {
+//        if(!viewModel.productSelected.equals(productClicked))
+//        {
+        viewModel.productSelected.postValue(productClicked)
+        navController.navigate(R.id.action_productList_to_detailsFragment)
+//        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        auxBinding=null
     }
 }

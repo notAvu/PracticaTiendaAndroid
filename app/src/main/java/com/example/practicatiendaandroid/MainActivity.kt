@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,10 +18,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val bottomNavigationView= findViewById<BottomNavigationView>(R.id.activity_main__bottom_navigation)
-//        val fragment= findViewById<FragmentContainerView>(R.id.fragment_container1)
-//        val navController= fragment.findNavController()
-//        bottomNavigationView.setupWithNavController(navController)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container1) as NavHostFragment
+        val navController = navHostFragment.navController
+        val bottomNavigationView= findViewById<BottomNavigationView>(R.id.activity_main__bottom_navigation)
+        bottomNavigationView.setupWithNavController(navController)
 
     }
 }
