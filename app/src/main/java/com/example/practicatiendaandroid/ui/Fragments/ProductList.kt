@@ -19,16 +19,15 @@ import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 private fun iniList(): ArrayList<Product>
 {
     val tempList:ArrayList<Product> = ArrayList()
-    tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
-    tempList.add(1, Product(2,"Peluche totoro uwu",12F, 0.56F,"Clothing & Games","https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"))
-    tempList.add(2, Product(3,"Silla gamer",223F, 223F,"Sports","https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"))
-    tempList.add(2, Product(3,"Silksong't",42.5F, 23F,"Sports","https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"))
-
+//    tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
+//    tempList.add(1, Product(2,"Totoro uwu",12F, 0.56F,"Clothing & Games","https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"))
+//    tempList.add(2, Product(3,"Silla gamer",223F, 223F,"Sports","https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"))
+//    tempList.add(2, Product(3,"Silksong't",42.5F, 23F,"Sports","https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"))
     return tempList
 }
 
 class ProductList : Fragment() {
-    private lateinit var productsList: ArrayList<Product>
+    private lateinit var productsList: List<Product>
     private lateinit var navController: NavController
     private val viewModel:ProductListVM by activityViewModels()
     private var auxBinding:FragmentProductListBinding?=null
@@ -36,29 +35,26 @@ class ProductList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.onCreate()
 //        arguments?.let {
 //        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
-            productsList= iniList()
         return valBind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
         navController=findNavController()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
-            adapter = ProductAdapter(productsList){onProductoSelected(it)}
+            adapter = ProductAdapter(viewModel.productsList.value!!){onProductoSelected(it)}
         }
     }
 
     private fun onProductoSelected(productClicked: Product) {
-//        if(!viewModel.productSelected.equals(productClicked))
-//        {
         viewModel.productSelected.postValue(productClicked)
         navController.navigate(R.id.action_productList_to_detailsFragment)
 //        }
@@ -69,23 +65,4 @@ class ProductList : Fragment() {
         auxBinding=null
     }
 
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment ProductList.
-//         */
-//        //Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            ProductList().apply {
-//                arguments = Bundle().apply {
-////                    putString(ARG_PARAM1, param1)
-////                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
 }
