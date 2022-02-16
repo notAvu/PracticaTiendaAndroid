@@ -13,6 +13,7 @@ import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentDetailsBinding
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
+import com.google.android.material.transition.MaterialContainerTransform
 import com.squareup.picasso.Picasso
 
 
@@ -22,6 +23,8 @@ class DetailsFragment : Fragment() {
     private val valBind get()=auxBinding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedElementEnterTransition=MaterialContainerTransform()
+    //        sharedElementEnterTransition = MaterialContainerTransform()
     }
 
     override fun onCreateView(
