@@ -70,7 +70,7 @@ class ProductList : Fragment() {
 //        {
         viewModel.productSelected.postValue(product)
         val toFetailsTransitionName = getString(R.string.product_list__details)
-        val extras = FragmentNavigatorExtras(valBind.fragmentProductListRecyclerview[1] to toFetailsTransitionName)
+        val extras = FragmentNavigatorExtras(cardView to toFetailsTransitionName)
         val directions = ProductListDirections.actionProductListToDetailsFragment(product.id)
         findNavController().navigate(directions, extras)
 //        }
