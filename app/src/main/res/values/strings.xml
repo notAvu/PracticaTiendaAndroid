@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">PracticaTiendaAndroid</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">title</string>
+    <string name="product_list__details">action_productList_to_detailsFragment</string>
 </resources>

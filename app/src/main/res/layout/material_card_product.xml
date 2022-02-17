@@ -6,7 +6,8 @@
     app:cardBackgroundColor="@color/dark_card_bg"
     app:strokeColor="@color/cardview_dark_background"
     app:cardElevation="8dp"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:transitionName="@{@string/product_list__details(product.id)}">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:text="title"
+                android:text="@string/title"
                 android:textSize="20dp"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 />

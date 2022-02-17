@@ -11,7 +11,13 @@
         tools:layout="@layout/fragment_product_list" >
         <action
             android:id="@+id/action_productList_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment" >
+
+        <argument
+            android:name="productId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        </action>
         <action
             android:id="@+id/action_productList_to_cartFragment"
             app:destination="@id/cartFragment" />

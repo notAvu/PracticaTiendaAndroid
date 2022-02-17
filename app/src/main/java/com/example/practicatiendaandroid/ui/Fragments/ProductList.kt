@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
@@ -60,17 +61,18 @@ class ProductList : Fragment() {
         navController=findNavController()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
-            adapter = ProductAdapter(productsList){onProductoSelected(it)}
+            adapter = ProductAdapter(productsList){onProductoSelected(it, view)}
         }
     }
 
-    private fun onProductoSelected(productClicked: Product) {
+    private fun onProductoSelected(product: Product,cardView: View) {
 //        if(!viewModel.productSelected.equals(productClicked))
 //        {
-
-        viewModel.productSelected.postValue(productClicked)
-        val navExtras= FragmentNavigatorExtras(view!! to "shared_element_container")
-        navController.navigate(R.id.action_productList_to_detailsFragment, null, null, navExtras)
+        viewModel.productSelected.postValue(product)
+        val toFetailsTransitionName = getString(R.string.product_list__details)
+        val extras = FragmentNavigatorExtras(valBind.fragmentProductListRecyclerview[1] to toFetailsTransitionName)
+        val directions = ProductListDirections.actionProductListToDetailsFragment(product.id)
+        findNavController().navigate(directions, extras)
 //        }
     }
 
