@@ -23,7 +23,7 @@ class DetailsFragment : Fragment() {
     private val valBind get()=auxBinding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition=MaterialContainerTransform()
+//        sharedElementEnterTransition=MaterialContainerTransform()
     //        sharedElementEnterTransition = MaterialContainerTransform()
     }
 

@@ -42,8 +42,8 @@ class ProductList : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        detailsFragment.sharedElementEnterTransition= MaterialContainerTransform()
-        exitTransition = Hold()
+//        detailsFragment.sharedElementEnterTransition= MaterialContainerTransform()
+//        exitTransition = Hold()
 //        arguments?.let {
 //        }
     }
@@ -65,13 +65,10 @@ class ProductList : Fragment() {
     }
 
     private fun onProductoSelected(productClicked: Product) {
-//        if(!viewModel.productSelected.equals(productClicked))
-//        {
-
         viewModel.productSelected.postValue(productClicked)
-        val navExtras= FragmentNavigatorExtras(view!! to "shared_element_container")
-        navController.navigate(R.id.action_productList_to_detailsFragment, null, null, navExtras)
-//        }
+//        val navExtras= FragmentNavigatorExtras(view!! to "shared_element_container")
+//        navController.navigate(R.id.action_productList_to_detailsFragment, null, null, navExtras)
+        navController.navigate(R.id.action_productList_to_detailsFragment)
     }
 
     override fun onDestroyView() {
