@@ -62,7 +62,9 @@
                 android:textAlignment="textEnd"
                 app:iconGravity="textEnd"
                 app:icon="@drawable/ic_baseline_add_shopping_cart_24"
-                android:text="Add"
+                app:iconSize="30dp"
+                android:textSize="17dp"
+                android:text="Buy"
                 style="?attr/borderlessButtonStyle"
                 />
 
