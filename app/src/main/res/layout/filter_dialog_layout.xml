@@ -16,15 +16,22 @@
         android:layout_row="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Filtrar por:"
+        android:text="Ordenar por:"
         />
     <Spinner
+        android:id="@+id/filter_dialog_layout__categories_spinner"
         android:layout_row="1"
         android:layout_column="1"
         />
 
     <Spinner
+        android:id="@+id/filter_dialog_layout__order_criteria_spinner"
         android:layout_row="0"
         android:layout_column="1"
         />
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/filter_dialog_layout__positive_button"-->
+<!--        android:text="Filtrar"-->
+<!--        android:layout_column="1"-->
+<!--        android:layout_row="2"/>-->
 </GridLayout>
