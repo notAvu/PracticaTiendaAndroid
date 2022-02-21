@@ -16,8 +16,8 @@ import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private fun iniList(): ArrayList<Product> {
     val tempList: ArrayList<Product> = ArrayList()
@@ -25,10 +25,10 @@ private fun iniList(): ArrayList<Product> {
         0,
         Product(
             1,
-            "Fantastic Granite Bench",
+            "Paracetamol",
             23F,
             23F,
-            "Outdoors, Tools & Toys",
+            "Medicina",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"
         )
     )
@@ -39,7 +39,7 @@ private fun iniList(): ArrayList<Product> {
             "Totoro uwu",
             12F,
             0.56F,
-            "Clothing & Games",
+            "Juguetes",
             "https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"
         )
     )
@@ -50,7 +50,7 @@ private fun iniList(): ArrayList<Product> {
             "Silla gamer",
             223F,
             223F,
-            "Sports",
+            "Muebles",
             "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
         )
     )
@@ -61,7 +61,7 @@ private fun iniList(): ArrayList<Product> {
             "Silksong't",
             42.5F,
             23F,
-            "Sports",
+            "Videojuegos",
             "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
         )
     )
@@ -72,7 +72,7 @@ private fun iniList(): ArrayList<Product> {
             "Silla gamer",
             223F,
             223F,
-            "Sports",
+            "Muebles",
             "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
         )
     )
@@ -83,7 +83,7 @@ private fun iniList(): ArrayList<Product> {
             "Silksong't",
             42.5F,
             23F,
-            "Sports",
+            "Videojuegos",
             "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
         )
     )
@@ -98,8 +98,8 @@ class ProductList : Fragment() {
     private var auxBinding: FragmentProductListBinding? = null
     private val valBind get() = auxBinding!!
     private val detailsFragment = DetailsFragment()
-    private lateinit var categoriesList : ArrayList<String>
-//    private lateinit var filterButton:FloatingActionButton
+    private var categoriesList = ArrayList<String>()
+    private lateinit var filterButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,21 +116,19 @@ class ProductList : Fragment() {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
         productsList = iniList()
         productsList.forEach {
-            val category=it.category
-            if(categoriesList.contains(category))
+            val category = it.category
+            if (!categoriesList.contains(category))
                 categoriesList.add(category)
         }
-//        filterButton=valBind.fragmentProductListFab
-//        filterButton.setOnClickListener {
-
-////            TODO("CREATE AND LAUNCH CONTENTDIALOG")
-//        }
+        filterButton=valBind.fragmentProductListFab
+        filterButton.setOnClickListener {
+        showFilterDialog()
+        }
         return valBind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showFilterDialog()
 
         navController = findNavController()
         valBind.fragmentProductListRecyclerview.apply {
@@ -142,10 +140,10 @@ class ProductList : Fragment() {
     private fun showFilterDialog() {
         val filterDialog = layoutInflater.inflate(R.layout.filter_dialog_layout, null)
         //        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
+        val orderCriteriaSpinner =
+            filterDialog.findViewById<Spinner>(R.id.filter_dialog_layout__order_criteria_spinner)
         val categoriesSpinner =
             filterDialog.findViewById<Spinner>(R.id.filter_dialog_layout__categories_spinner)
-        val orderBySpinner =
-            filterDialog.findViewById<Spinner>(R.id.filter_dialog_layout__order_criteria_spinner)
         val orderByAdapter: ArrayAdapter<String> = ArrayAdapter(
             context!!,
             android.R.layout.simple_spinner_dropdown_item,
@@ -156,14 +154,15 @@ class ProductList : Fragment() {
             android.R.layout.simple_spinner_dropdown_item,
             categoriesList
         )
-        orderBySpinner.adapter = orderByAdapter
+        categoriesSpinner.adapter = filterAdapter
+        orderCriteriaSpinner.adapter = orderByAdapter
         MaterialAlertDialogBuilder(context!!)
             .setTitle("Filtrar")
             .setView(filterDialog)
             .setCancelable(true)
-            .setPositiveButton("Filtrar"){dialogInterface, which->
-                val category:String=categoriesSpinner.selectedItem.toString()
-                val criteria:String=orderBySpinner.selectedItem.toString()
+            .setPositiveButton("Filtrar") { dialogInterface, which ->
+                val category: String = orderCriteriaSpinner.selectedItem.toString()
+                val criteria: String = categoriesSpinner.selectedItem.toString()
             }
             .show()
     }
