@@ -12,6 +12,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.Data.DAO.ProductDao
+import com.example.practicatiendaandroid.Data.Database.ShopDatabase
+import com.example.practicatiendaandroid.Data.Injections.RoomModule
+import com.example.practicatiendaandroid.Data.ProductRepository
+import com.example.practicatiendaandroid.Data.useCases.ProductsUseCase
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
@@ -19,7 +24,7 @@ import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-private fun iniList(): ArrayList<Product>
+private suspend fun iniList(): ArrayList<Product>
 {
     val tempList:ArrayList<Product> = ArrayList()
 //    tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
@@ -53,7 +58,7 @@ class ProductList : Fragment() {
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
 
-        productsList = iniList()
+        productsList = viewModel.productsList.value!!
         productsList.forEach {
             val category = it.category
             if (!categoriesList.contains(category))
@@ -83,18 +88,18 @@ class ProductList : Fragment() {
         val categoriesSpinner =
             filterDialog.findViewById<Spinner>(R.id.filter_dialog_layout__categories_spinner)
         val orderByAdapter: ArrayAdapter<String> = ArrayAdapter(
-            context!!,
+            requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             mutableListOf("Precio", "Nombre")
         )
         val filterAdapter: ArrayAdapter<String> = ArrayAdapter(
-            context!!,
+            requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             categoriesList
         )
         categoriesSpinner.adapter = filterAdapter
         orderCriteriaSpinner.adapter = orderByAdapter
-        MaterialAlertDialogBuilder(context!!)
+        MaterialAlertDialogBuilder(requireContext())
             .setTitle("Filtrar")
             .setView(filterDialog)
             .setCancelable(true)

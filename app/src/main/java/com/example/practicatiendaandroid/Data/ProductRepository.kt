@@ -12,4 +12,7 @@ class ProductRepository @Inject constructor(private val productDao:ProductDao) {
         val response: List<ProductEntity> = productDao.getProductList()
         return response.map { it.toDomain() }
     }
+    suspend fun insertProducts(list:List<ProductEntity>){
+        productDao.insertAllProducts(list)
+    }
 }
