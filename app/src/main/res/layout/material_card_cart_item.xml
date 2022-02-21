@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="@color/dark_card_bg"
-    app:strokeColor="@color/cardview_dark_background"
     app:cardElevation="8dp"
-    android:layout_margin="10dp">
+    app:strokeColor="@color/cardview_dark_background">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,13 +15,13 @@
 
         <!-- Media -->
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/list_element_product_product_image"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            app:srcCompat="@color/black"
             android:adjustViewBounds="true"
-            />
+            android:scaleType="centerCrop"
+            app:srcCompat="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -28,31 +29,41 @@
             android:padding="16dp">
 
             <!-- Title, secondary and supporting text -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/list_element_product_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="title"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/purple_500"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/list_element_product_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x3"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/purple_500"
+                    android:textSize="20dp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/list_element_product_product_name"
-                android:textColor="@color/purple_500"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:text="title"
-                android:textSize="20dp"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-            <TextView
                 android:id="@+id/list_element_product_product_price"
-                android:textColor="@color/purple_500"
-                android:layout_weight="20"
-                android:layout_marginVertical="5dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_height="0dp"
-                android:layout_width="match_parent"
-                android:textAlignment="textEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="500€"
-                android:textSize="20dp"
+                android:textAlignment="textEnd"
                 android:textAppearance="?attr/textAppearanceBody2"
-                />
+                android:textColor="@color/purple_500"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
