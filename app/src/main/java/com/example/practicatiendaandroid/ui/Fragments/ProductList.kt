@@ -133,7 +133,7 @@ class ProductList : Fragment() {
         navController = findNavController()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
-            adapter = ProductAdapter(productsList) { onProductoSelected(it) }
+            adapter = ProductAdapter(R.layout.material_card_product,productsList) { onProductoSelected(it) }
         }
     }
 

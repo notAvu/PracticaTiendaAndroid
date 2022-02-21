@@ -12,6 +12,7 @@ import com.example.practicatiendaandroid.R
 import com.squareup.picasso.Picasso
 
 class ProductAdapter(
+    private val layout:Int,
     private val dataSet: MutableList<Product>,
     private val listener: (Product) -> Unit
 ) :
@@ -24,7 +25,7 @@ class ProductAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.material_card_product, parent, false)
+        val view = layoutInflater.inflate(layout, parent, false)
         return ViewHolder(view)
     }
 
