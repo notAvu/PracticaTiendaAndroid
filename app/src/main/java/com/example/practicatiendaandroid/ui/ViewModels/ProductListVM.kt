@@ -7,6 +7,7 @@ import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.Data.Entities.toDatbase
 import com.example.practicatiendaandroid.Data.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,15 +15,24 @@ import javax.inject.Inject
 class ProductListVM @Inject constructor(private val productRepository: ProductRepository) :
     ViewModel() {
     val productSelected = MutableLiveData<Product>()
-    val productsList: MutableLiveData<List<Product>> = MutableLiveData()
+    val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
     fun onCreate() {
-        viewModelScope.launch {
-            val list = productRepository.getAllProductsFromDatabase()
-            if (list.isNullOrEmpty()) {
-                productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
-                productRepository.getAllProductsFromDatabase()
-                productsList.postValue(list)
-            }
+        viewModelScope.launch (Dispatchers.IO){
+            productRepository.deleteAllProducts()
+            productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
+//            val list = productRepository.getAllProductsFromDatabase()
+//
+//            if (list.isNullOrEmpty()) {
+//                productRepository.getAllProductsFromDatabase()
+//                productsList.postValue(list)
+//            }
+        }
+            loadProducts()
+    }
+
+    fun loadProducts(){
+        viewModelScope.launch (Dispatchers.IO){
+            vmProdList.postValue(productRepository.getAllProductsFromDatabase())
         }
     }
 

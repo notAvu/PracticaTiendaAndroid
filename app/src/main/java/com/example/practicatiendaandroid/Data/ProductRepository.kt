@@ -15,4 +15,7 @@ class ProductRepository @Inject constructor(private val productDao:ProductDao) {
     suspend fun insertProducts(list:List<ProductEntity>){
         productDao.insertAllProducts(list)
     }
+    suspend fun deleteAllProducts(){
+        productDao.deleteAllProducts()
+    }
 }

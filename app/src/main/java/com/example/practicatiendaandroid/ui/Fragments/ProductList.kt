@@ -12,11 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
-import com.example.practicatiendaandroid.Data.DAO.ProductDao
-import com.example.practicatiendaandroid.Data.Database.ShopDatabase
-import com.example.practicatiendaandroid.Data.Injections.RoomModule
-import com.example.practicatiendaandroid.Data.ProductRepository
-import com.example.practicatiendaandroid.Data.useCases.ProductsUseCase
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
@@ -24,9 +19,8 @@ import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-private suspend fun iniList(): ArrayList<Product>
-{
-    val tempList:ArrayList<Product> = ArrayList()
+private fun iniList(): ArrayList<Product> {
+    val tempList: ArrayList<Product> = ArrayList()
 //    tempList.add(0, Product(1,"Fantastic Granite Bench",23F, 23F,"Outdoors, Tools & Toys","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"))
 //    tempList.add(1, Product(2,"Totoro uwu",12F, 0.56F,"Clothing & Games","https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"))
 //    tempList.add(2, Product(3,"Silla gamer",223F, 223F,"Sports","https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"))
@@ -46,7 +40,6 @@ class ProductList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.onCreate()
 //        arguments?.let {
 //        }
     }
@@ -57,26 +50,30 @@ class ProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
-
-        productsList = viewModel.productsList.value!!
+        productsList = iniList()
+        productsList = viewModel.vmProdList.value!!
         productsList.forEach {
             val category = it.category
             if (!categoriesList.contains(category))
                 categoriesList.add(category)
         }
-        filterButton=valBind.fragmentProductListFab
+        filterButton = valBind.fragmentProductListFab
         filterButton.setOnClickListener {
-        showFilterDialog()
+            showFilterDialog()
+
         }
         return valBind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    navController = findNavController()
+        navController = findNavController()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
-            adapter = ProductAdapter(R.layout.material_card_product,productsList) { onProductoSelected(it) }
+            adapter = ProductAdapter(
+                R.layout.material_card_product,
+                productsList
+            ) { onProductoSelected(it) }
         }
     }
 
