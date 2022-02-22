@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -18,6 +17,7 @@ import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.squareup.picasso.Picasso
 
 
 class ProductList : Fragment() {
@@ -101,15 +101,34 @@ class ProductList : Fragment() {
             }
             .show()
     }
+    private fun showDetailsDialog(productClicked: Product){
+        val detailsDialog = layoutInflater.inflate(R.layout.material_details_card, null)
+        //        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
+        val prodImage:ImageView=detailsDialog.findViewById(R.id.material_details_card__product_image)
+        val prodName:TextView=detailsDialog.findViewById(R.id.material_details_card__product_name)
+        val prodPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__product_price)
+        val buyButton: Button =detailsDialog.findViewById(R.id.material_details_card__buy_product)
+        prodName.text=productClicked.productName
+//        prodPrice.text= productClicked.price.toString()
+        Picasso.get().load(productClicked.imageSrc).into(prodImage)
+//        buyButton.setOnClickListener()
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Detalles del producto")
+            .setView(detailsDialog)
+            .setCancelable(true)
+//            .setPositiveButton("Filtrar") { dialogInterface, which ->
+////                val category: String = orderCriteriaSpinner.selectedItem.toString()
+////                val criteria: String = categoriesSpinner.selectedItem.toString()
+//            }
+            .show()
+    }
 
     private fun onProductoSelected(productClicked: Product) {
-        viewModel.productSelected.postValue(productClicked)
-        navController.navigate(R.id.action_productList_to_detailsFragment)
+        showDetailsDialog(productClicked)
+//        viewModel.productSelected.postValue(productClicked)
+//        navController.navigate(R.id.action_productList_to_detailsFragment)
     }
 
-    private fun productDetailsDialog(){
-        TODO("Content dialog fullscreen que muestre los datos del producto con la opcion de comprar")
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
