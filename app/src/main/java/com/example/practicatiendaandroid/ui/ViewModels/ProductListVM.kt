@@ -20,11 +20,11 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
         viewModelScope.launch (Dispatchers.IO){
             productRepository.deleteAllProducts()
             productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
-//            val list = productRepository.getAllProductsFromDatabase()
+            val list = productRepository.getAllProductsFromDatabase()
 //
 //            if (list.isNullOrEmpty()) {
 //                productRepository.getAllProductsFromDatabase()
-//                productsList.postValue(list)
+            vmProdList.postValue(list)
 //            }
         }
             loadProducts()
@@ -42,7 +42,7 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
             0,
             Product(
                 1,
-                "Paracetamol",
+                "UN PITO ",
                 23F,
                 23F,
                 "Medicina",
