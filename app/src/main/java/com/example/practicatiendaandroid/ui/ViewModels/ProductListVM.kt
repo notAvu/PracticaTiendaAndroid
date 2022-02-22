@@ -17,21 +17,13 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
     val productSelected = MutableLiveData<Product>()
     val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
     fun onCreate() {
-        viewModelScope.launch (Dispatchers.IO){
-            productRepository.deleteAllProducts()
-            productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
-            val list = productRepository.getAllProductsFromDatabase()
-//
-//            if (list.isNullOrEmpty()) {
-//                productRepository.getAllProductsFromDatabase()
-            vmProdList.postValue(list)
-//            }
-        }
             loadProducts()
     }
 
     fun loadProducts(){
         viewModelScope.launch (Dispatchers.IO){
+            productRepository.deleteAllProducts()
+            productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
             vmProdList.postValue(productRepository.getAllProductsFromDatabase())
         }
     }
@@ -42,7 +34,7 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
             0,
             Product(
                 1,
-                "UN PITO ",
+                "Ibuprofeno ",
                 23F,
                 23F,
                 "Medicina",
