@@ -3,6 +3,7 @@ package com.example.practicatiendaandroid.ProductListAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
@@ -18,6 +19,7 @@ class ProductAdapter(
 ) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val buyBtn: Button = view.findViewById(R.id.list_element_product_buy_product)
         val productName: TextView = view.findViewById(R.id.list_element_product_product_name)
         val productImage: ImageView = view.findViewById(R.id.list_element_product_product_image)
         val productPrice: TextView = view.findViewById(R.id.list_element_product_product_price)
@@ -30,7 +32,6 @@ class ProductAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         with(holder) {
             productName.text = dataSet[position].productName
             productPrice.text = dataSet[position].price.toString()+"€"

@@ -41,12 +41,9 @@ class ProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
-
-//        productsList = viewModel.vmProdList.value!!
         filterButton = valBind.fragmentProductListFab
         filterButton.setOnClickListener {
             showFilterDialog()
-
         }
         return valBind.root
     }
@@ -72,7 +69,6 @@ class ProductList : Fragment() {
         viewModel.loadProducts()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
-
         }
     }
 
@@ -108,9 +104,11 @@ class ProductList : Fragment() {
 
     private fun onProductoSelected(productClicked: Product) {
         viewModel.productSelected.postValue(productClicked)
-//        val navExtras= FragmentNavigatorExtras(view!! to "shared_element_container")
-//        navController.navigate(R.id.action_productList_to_detailsFragment, null, null, navExtras)
         navController.navigate(R.id.action_productList_to_detailsFragment)
+    }
+
+    private fun productDetailsDialog(){
+        TODO("Content dialog fullscreen que muestre los datos del producto con la opcion de comprar")
     }
 
     override fun onDestroyView() {

@@ -15,5 +15,4 @@ data class ProductEntity (
     @ColumnInfo(name="category") val category:String,
     @ColumnInfo(name="imageSrc") val imageSrc:String
     )
-//TODO("REVISAR DTO")
 fun Product.toDatbase()= ProductEntity(productName = productName, price=price, unitPrice= unitPrice, category=category, imageSrc=imageSrc)
