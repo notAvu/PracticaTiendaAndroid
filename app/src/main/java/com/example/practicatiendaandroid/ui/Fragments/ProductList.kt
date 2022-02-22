@@ -41,8 +41,6 @@ class ProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
-
-//        productsList = viewModel.vmProdList.value!!
         filterButton = valBind.fragmentProductListFab
         filterButton.setOnClickListener {
             showFilterDialog()

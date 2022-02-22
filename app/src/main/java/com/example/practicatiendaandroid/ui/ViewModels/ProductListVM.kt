@@ -17,7 +17,7 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
     val productSelected = MutableLiveData<Product>()
     val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
     fun onCreate() {
-            loadProducts()
+//            loadProducts()
     }
 
     fun loadProducts(){
@@ -47,7 +47,7 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
                 2,
                 "Totoro uwu",
                 12F,
-                0.56F,
+                12F,
                 "Juguetes",
                 "https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"
             )
@@ -78,22 +78,22 @@ class ProductListVM @Inject constructor(private val productRepository: ProductRe
             4,
             Product(
                 3,
-                "Silla gamer",
-                223F,
-                223F,
-                "Muebles",
-                "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
+                "Dalsy",
+                8F,
+                8F,
+                "Medicina",
+                "http://estaticos.elmundo.es/assets/multimedia/imagenes/2016/09/23/14746218702234.jpg"
             )
         )
         tempList.add(
             5,
             Product(
                 4,
-                "Silksong't",
-                42.5F,
-                23F,
-                "Videojuegos",
-                "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
+                "Curso aristidevs",
+                0F,
+                0F,
+                "Aristitruco",
+                "https://i.ytimg.com/vi/-xRWR_TVa28/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBgdsmdXcejgQUliXsZvEqNQob8rA"
             )
         )
 
