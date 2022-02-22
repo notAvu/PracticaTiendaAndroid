@@ -9,46 +9,110 @@
     android:layout_height="match_parent"
     tools:context=".ui.Fragments.DetailsFragment" android:padding="20dp">
 
-    <TextView
-        android:textSize="30dp"
-        android:id="@+id/fragment_details__text_view__product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="placeholder"
-        />
-    <ImageView
-        android:src="@color/cardview_dark_background"
-        android:layout_marginTop="50dp"
-        android:id="@+id/fragment_details__image_view__product_image"
-        android:layout_width="@dimen/detailsImageSize"
-        android:layout_height="@dimen/detailsImageSize"/>
-    <TextView
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/dark_card_bg"
+        app:cardElevation="8dp"
+        app:strokeColor="@color/cardview_dark_background">
 
-        android:id="@+id/fragment_details__text_view__product_price"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="precioPlaceHolder: Ta caro"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        />
-    <TextView
-        android:id="@+id/fragment_details__text_view__units"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:text="Cantidad: una pechá"
-        />
+            <!-- Media -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/fragment_details__text_view__product_unit_price"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:text="precio por unidad: 15 pesos"
-        />
+            <ImageView
+                android:id="@+id/material_details_card__product_image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+                <TextView
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/material_details_card__product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="title"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textColor="@color/purple_500"
+                    android:textSize="30dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+
+
+                <TextView
+                    android:id="@+id/material_details_card__description_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="30"
+                    android:text="Testaco"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/purple_500"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/material_details_card__unit_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="50"
+                    android:text="PrecioUnitario"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="@color/purple_500"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="20">
+
+                    <TextView
+                        android:id="@+id/material_details_card__product_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingTop="20dp"
+                        android:text="500€"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="@color/purple_500"
+                        android:textSize="20dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Buy Product"
+                        android:textAlignment="textEnd"
+                        app:icon="@drawable/ic_baseline_add_shopping_cart_24"
+                        app:iconGravity="textEnd" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </FrameLayout>

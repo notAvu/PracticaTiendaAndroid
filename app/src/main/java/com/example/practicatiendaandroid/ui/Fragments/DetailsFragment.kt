@@ -12,6 +12,7 @@ import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentDetailsBinding
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
+import com.example.practicatiendaandroid.databinding.MaterialDetailsCardBinding
 import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 import com.google.android.material.transition.MaterialContainerTransform
 import com.squareup.picasso.Picasso
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso
 
 class DetailsFragment : Fragment() {
     private val viewModel: ProductListVM by activityViewModels()
-    private var auxBinding: FragmentDetailsBinding?=null
+    private var auxBinding: MaterialDetailsCardBinding?=null
     private val valBind get()=auxBinding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        auxBinding = FragmentDetailsBinding.inflate(inflater, container, false)
+        auxBinding = MaterialDetailsCardBinding.inflate(inflater, container, false)
 //        productsList= iniList()
         return valBind.root
     }
@@ -40,11 +41,11 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val selected=viewModel.productSelected.value
         valBind.apply {
-            fragmentDetailsTextViewProductName.text= selected?.productName ?: ""
-            fragmentDetailsTextViewProductUnitPrice.text= (selected?.unitPrice?:0).toString()
-            fragmentDetailsTextViewProductPrice.text= (selected?.price ?: 0).toString()
-            fragmentDetailsTextViewUnits.text=selected?.category ?: ""
-            Picasso.get().load(selected?.imageSrc).into(fragmentDetailsImageViewProductImage)
+            materialDetailsCardProductName.text= selected?.productName ?: ""
+            materialDetailsCardUnitPrice.text= (selected?.unitPrice?:0).toString()
+            materialDetailsCardProductPrice.text= (selected?.price ?: 0).toString()
+            materialDetailsCardDescriptionText.text=selected?.category ?: ""
+            Picasso.get().load(selected?.imageSrc).into(materialDetailsCardProductImage)
         }
     }
 //    companion object {
