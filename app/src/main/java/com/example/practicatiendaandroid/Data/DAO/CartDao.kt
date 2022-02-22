@@ -7,6 +7,6 @@ import com.example.practicatiendaandroid.Data.Entities.CartEntity
 @Dao
 interface CartDao {
     @Query("SELECT * FROM cart_table")
-    suspend fun getCartsList():ArrayList<CartEntity>
+    suspend fun getCartsList():List<CartEntity>
 
 }

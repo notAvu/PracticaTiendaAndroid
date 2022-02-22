@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 
 class ProductAdapter(
     private val layout:Int,
-    private val dataSet: MutableList<Product>,
+    private val dataSet: List<Product>,
     private val listener: (Product) -> Unit
 ) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {

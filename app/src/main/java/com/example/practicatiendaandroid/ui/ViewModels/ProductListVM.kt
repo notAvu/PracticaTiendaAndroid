@@ -2,8 +2,101 @@ package com.example.practicatiendaandroid.ui.ViewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.Data.Entities.toDatbase
+import com.example.practicatiendaandroid.Data.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductListVM : ViewModel() {
-    val productSelected=MutableLiveData<Product>()
+@HiltViewModel
+class ProductListVM @Inject constructor(private val productRepository: ProductRepository) :
+    ViewModel() {
+    val productSelected = MutableLiveData<Product>()
+    val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
+    fun onCreate() {
+            loadProducts()
+    }
+
+    fun loadProducts(){
+        viewModelScope.launch (Dispatchers.IO){
+            productRepository.deleteAllProducts()
+            productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
+            vmProdList.postValue(productRepository.getAllProductsFromDatabase())
+        }
+    }
+
+    private fun defaultProductList(): List<Product> {
+        val tempList: ArrayList<Product> = ArrayList()
+        tempList.add(
+            0,
+            Product(
+                1,
+                "Ibuprofeno ",
+                23F,
+                23F,
+                "Medicina",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"
+            )
+        )
+        tempList.add(
+            1,
+            Product(
+                2,
+                "Totoro uwu",
+                12F,
+                0.56F,
+                "Juguetes",
+                "https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"
+            )
+        )
+        tempList.add(
+            2,
+            Product(
+                3,
+                "Silla gamer",
+                223F,
+                223F,
+                "Muebles",
+                "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
+            )
+        )
+        tempList.add(
+            3,
+            Product(
+                4,
+                "Silksong't",
+                42.5F,
+                23F,
+                "Videojuegos",
+                "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
+            )
+        )
+        tempList.add(
+            4,
+            Product(
+                3,
+                "Silla gamer",
+                223F,
+                223F,
+                "Muebles",
+                "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
+            )
+        )
+        tempList.add(
+            5,
+            Product(
+                4,
+                "Silksong't",
+                42.5F,
+                23F,
+                "Videojuegos",
+                "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
+            )
+        )
+
+        return tempList
+    }
 }

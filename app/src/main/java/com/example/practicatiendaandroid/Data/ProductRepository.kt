@@ -7,10 +7,15 @@ import com.example.practicatiendaandroid.Data.Entities.ProductEntity
 import javax.inject.Inject
 
 class ProductRepository @Inject constructor(private val productDao:ProductDao) {
-
     suspend fun getAllProductsFromDatabase():List<Product>
     {
         val response: List<ProductEntity> = productDao.getProductList()
         return response.map { it.toDomain() }
+    }
+    suspend fun insertProducts(list:List<ProductEntity>){
+        productDao.insertAllProducts(list)
+    }
+    suspend fun deleteAllProducts(){
+        productDao.deleteAllProducts()
     }
 }

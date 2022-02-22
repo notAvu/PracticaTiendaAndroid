@@ -15,7 +15,7 @@ import javax.inject.Singleton
 object RoomModule {
     @Singleton
     @Provides
-    fun provideRoom(@ApplicationContext context: Context)= Room.databaseBuilder(context, ShopDatabase::class.java, "shop_database").build()
+    fun provideRoom(@ApplicationContext context: Context)= Room.databaseBuilder(context, ShopDatabase::class.java, "shop_database").allowMainThreadQueries().build()
 
     @Singleton
     @Provides
@@ -24,5 +24,4 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideCartDao(database:ShopDatabase)= database.getCartDao()
-
 }

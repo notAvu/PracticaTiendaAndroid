@@ -19,80 +19,8 @@ import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-private fun iniList(): ArrayList<Product> {
-    val tempList: ArrayList<Product> = ArrayList()
-    tempList.add(
-        0,
-        Product(
-            1,
-            "Paracetamol",
-            23F,
-            23F,
-            "Medicina",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcis2nSFZAO2nG4enJj0xxHBgVkxTuiXukg&usqp=CAU"
-        )
-    )
-    tempList.add(
-        1,
-        Product(
-            2,
-            "Totoro uwu",
-            12F,
-            0.56F,
-            "Juguetes",
-            "https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"
-        )
-    )
-    tempList.add(
-        2,
-        Product(
-            3,
-            "Silla gamer",
-            223F,
-            223F,
-            "Muebles",
-            "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
-        )
-    )
-    tempList.add(
-        3,
-        Product(
-            4,
-            "Silksong't",
-            42.5F,
-            23F,
-            "Videojuegos",
-            "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
-        )
-    )
-    tempList.add(
-        4,
-        Product(
-            3,
-            "Silla gamer",
-            223F,
-            223F,
-            "Muebles",
-            "https://pbs.twimg.com/media/FLVCGcuXoAARVgi?format=jpg&name=large"
-        )
-    )
-    tempList.add(
-        5,
-        Product(
-            4,
-            "Silksong't",
-            42.5F,
-            23F,
-            "Videojuegos",
-            "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
-        )
-    )
-
-    return tempList
-}
 
 class ProductList : Fragment() {
-    private lateinit var productsList: ArrayList<Product>
     private lateinit var navController: NavController
     private val viewModel: ProductListVM by activityViewModels()
     private var auxBinding: FragmentProductListBinding? = null
@@ -103,9 +31,8 @@ class ProductList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        detailsFragment.sharedElementEnterTransition= MaterialContainerTransform()
-//        exitTransition = Hold()
+//        arguments?.let {
+//        }
     }
 
     override fun onCreateView(
@@ -114,26 +41,38 @@ class ProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
-        productsList = iniList()
-        productsList.forEach {
-            val category = it.category
-            if (!categoriesList.contains(category))
-                categoriesList.add(category)
-        }
-        filterButton=valBind.fragmentProductListFab
+
+//        productsList = viewModel.vmProdList.value!!
+        filterButton = valBind.fragmentProductListFab
         filterButton.setOnClickListener {
-        showFilterDialog()
+            showFilterDialog()
+
         }
         return valBind.root
     }
 
+    private fun OnProdListLoaded(productList:List<Product>) {
+        valBind.fragmentProductListRecyclerview.adapter = viewModel.vmProdList.value?.let {
+            ProductAdapter(
+                R.layout.material_card_product,
+                it
+            ) { onProductoSelected(it) }
+        }
+        viewModel.vmProdList.value?.forEach {
+            val category = it.category
+            if (!categoriesList.contains(category))
+                categoriesList.add(category)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         navController = findNavController()
+        viewModel.vmProdList.observe(viewLifecycleOwner, this::OnProdListLoaded)
+        viewModel.loadProducts()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
-            adapter = ProductAdapter(R.layout.material_card_product,productsList) { onProductoSelected(it) }
+
         }
     }
 
@@ -145,18 +84,18 @@ class ProductList : Fragment() {
         val categoriesSpinner =
             filterDialog.findViewById<Spinner>(R.id.filter_dialog_layout__categories_spinner)
         val orderByAdapter: ArrayAdapter<String> = ArrayAdapter(
-            context!!,
+            requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             mutableListOf("Precio", "Nombre")
         )
         val filterAdapter: ArrayAdapter<String> = ArrayAdapter(
-            context!!,
+            requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
             categoriesList
         )
         categoriesSpinner.adapter = filterAdapter
         orderCriteriaSpinner.adapter = orderByAdapter
-        MaterialAlertDialogBuilder(context!!)
+        MaterialAlertDialogBuilder(requireContext())
             .setTitle("Filtrar")
             .setView(filterDialog)
             .setCancelable(true)
