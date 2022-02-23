@@ -14,7 +14,7 @@ class CartRepository @Inject constructor(private val cartDao: CartDao) {
         return response.map { it.toDomain() }
     }
 
-    suspend fun insertProduct(productEntity: Product) {
-        cartDao.insert(productEntity.toDatbase())
+    suspend fun insertProduct(product: Product) {
+        cartDao.insert(product.toDatbase())
     }
 }

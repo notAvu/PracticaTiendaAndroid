@@ -31,7 +31,7 @@ private fun iniList(): ArrayList<Product>
     return tempList
 }
 class CartFragment : Fragment() {
-    private lateinit var productsList: ArrayList<Product>
+    private lateinit var productsList: List<Product>
     private lateinit var navController: NavController
     private val viewModel: ProductListVM by activityViewModels()
     private var auxBinding: FragmentCartBinding?=null
@@ -47,7 +47,6 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         auxBinding = FragmentCartBinding.inflate(inflater, container, false)
-        productsList= iniList()
         return valBind.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +55,11 @@ class CartFragment : Fragment() {
         navController=findNavController()
         valBind.cartFragmentProductRecyclerView.apply {
             layoutManager=LinearLayoutManager(view.context)
-            adapter=ProductAdapter(R.layout.material_card_cart_item,productsList){onProductoSelected(it)}
+            adapter= viewModel.vmCartItemList.value?.let {
+                ProductAdapter(R.layout.material_card_cart_item,
+                    it
+                ){onProductoSelected(it)}
+            }
         }
 //        valBind.fragmentProductListRecyclerview.apply {
 //            layoutManager = GridLayoutManager(view.context, 2)
@@ -65,7 +68,7 @@ class CartFragment : Fragment() {
     }
 
     private fun onProductoSelected(productClicked: Product) {
-        val navExtras= FragmentNavigatorExtras(view!! to "shared_element_container")
+        val navExtras= FragmentNavigatorExtras(requireView() to "shared_element_container")
         viewModel.productSelected.postValue(productClicked)
         navController.navigate(R.id.action_cartFragment_to_detailsFragment)
 

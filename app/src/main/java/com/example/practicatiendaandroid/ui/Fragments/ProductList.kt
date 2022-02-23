@@ -109,9 +109,11 @@ class ProductList : Fragment() {
         val prodPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__product_price)
         val buyButton: Button =detailsDialog.findViewById(R.id.material_details_card__buy_product)
         prodName.text=productClicked.productName
-//        prodPrice.text= productClicked.price.toString()
+        prodPrice.text= productClicked.price.toString()
         Picasso.get().load(productClicked.imageSrc).into(prodImage)
-//        buyButton.setOnClickListener()
+        buyButton.setOnClickListener {
+            viewModel.buyProduct(productClicked)
+        }
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Detalles del producto")
             .setView(detailsDialog)
