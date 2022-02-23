@@ -41,10 +41,10 @@ class ProductList : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
-        filterButton = valBind.fragmentProductListFab
-        filterButton.setOnClickListener {
-            showFilterDialog()
-        }
+//        filterButton = valBind.fragmentProductListFab
+//        filterButton.setOnClickListener {
+//            showFilterDialog()
+//        }
         return valBind.root
     }
 
@@ -103,25 +103,21 @@ class ProductList : Fragment() {
     }
     private fun showDetailsDialog(productClicked: Product){
         val detailsDialog = layoutInflater.inflate(R.layout.material_details_card, null)
-        //        viewModel.productSelected.observe(viewLifecycleOwner, this::onProductoSelected)
         val prodImage:ImageView=detailsDialog.findViewById(R.id.material_details_card__product_image)
         val prodName:TextView=detailsDialog.findViewById(R.id.material_details_card__product_name)
+        val prodCategory:TextView=detailsDialog.findViewById(R.id.material_details_card__category)
         val prodPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__product_price)
         val buyButton: Button =detailsDialog.findViewById(R.id.material_details_card__buy_product)
         prodName.text=productClicked.productName
-        prodPrice.text= productClicked.price.toString()
+        prodPrice.text= productClicked.price.toString()+"€"
+        prodCategory.text=productClicked.category
         Picasso.get().load(productClicked.imageSrc).into(prodImage)
         buyButton.setOnClickListener {
             viewModel.buyProduct(productClicked)
         }
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Detalles del producto")
             .setView(detailsDialog)
             .setCancelable(true)
-//            .setPositiveButton("Filtrar") { dialogInterface, which ->
-////                val category: String = orderCriteriaSpinner.selectedItem.toString()
-////                val criteria: String = categoriesSpinner.selectedItem.toString()
-//            }
             .show()
     }
 

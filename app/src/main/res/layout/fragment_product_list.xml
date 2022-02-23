@@ -40,12 +40,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:spanCount="2" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_product_list__fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_baseline_filter_alt_24"
-        android:contentDescription="filterFAB" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fragment_product_list__fab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|right"-->
+<!--        android:layout_margin="16dp"-->
+<!--        app:srcCompat="@drawable/ic_baseline_filter_alt_24"-->
+<!--        android:contentDescription="filterFAB" />-->
 </FrameLayout>

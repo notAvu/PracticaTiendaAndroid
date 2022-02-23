@@ -11,7 +11,6 @@
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/fragment_product_list.xml" value="0.23802083333333332" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/list_element_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/material_card_product.xml" value="0.25" />
-        <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/layout/material_details_card.xml" value="0.259375" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/menu/app_bar_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/PracticaTiendaAndroid/app/src/main/res/menu/default_menu.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.275" />
@@ -19,12 +18,12 @@
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/cart_element_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/filter_dialog_layout.xml" value="0.75" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/fragment_cart.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/fragment_details.xml" value="0.22" />
+        <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/fragment_details.xml" value="0.1" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/fragment_product_list.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/list_element_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/material_card_cart_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/material_card_product.xml" value="0.33" />
-        <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/material_details_card.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/material_details_card.xml" value="0.33" />
         <entry key="..\:/Users/afernandez/AndroidStudioProjects/PracticaTiendaAndroid/app/src/main/res/layout/product_list_layout.xml" value="0.36666666666666664" />
       </map>
     </option>
