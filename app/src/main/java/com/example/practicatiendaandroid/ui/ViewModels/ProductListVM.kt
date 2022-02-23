@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.Data.CartRepository
 import com.example.practicatiendaandroid.Data.Entities.toDatbase
 import com.example.practicatiendaandroid.Data.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,19 +13,30 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductListVM @Inject constructor(private val productRepository: ProductRepository) :
+class ProductListVM @Inject constructor(
+    private val productRepository: ProductRepository,
+    private val cartRepository: CartRepository
+) :
     ViewModel() {
     val productSelected = MutableLiveData<Product>()
     val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
+    val vmCartItemList:MutableLiveData<List<Product>> = MutableLiveData()
     fun onCreate() {
-//            loadProducts()
     }
 
-    fun loadProducts(){
-        viewModelScope.launch (Dispatchers.IO){
+    fun buyProduct(product: Product) {
+        viewModelScope.launch(Dispatchers.IO) {
+            cartRepository.insertProduct(product)
+        }
+    }
+
+    fun loadProducts() {
+        viewModelScope.launch(Dispatchers.IO) {
             productRepository.deleteAllProducts()
             productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
             vmProdList.postValue(productRepository.getAllProductsFromDatabase())
+//            vmCartItemList.postValue()
+            TODO("Implementar relacion en la bdd y pillar de ahi los productos del carro")
         }
     }
 
