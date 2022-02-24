@@ -108,7 +108,9 @@ class ProductList : Fragment() {
         val prodCategory:TextView=detailsDialog.findViewById(R.id.material_details_card__category)
         val prodPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__product_price)
         val buyButton: Button =detailsDialog.findViewById(R.id.material_details_card__buy_product)
+        val prodUnitPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__unit_price)
         prodName.text=productClicked.productName
+        prodUnitPrice.text=productClicked.unitPrice.toString()+"€/unidad"
         prodPrice.text= productClicked.price.toString()+"€"
         prodCategory.text=productClicked.category
         Picasso.get().load(productClicked.imageSrc).into(prodImage)

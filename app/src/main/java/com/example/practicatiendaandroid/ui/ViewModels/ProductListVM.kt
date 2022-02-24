@@ -26,7 +26,7 @@ class ProductListVM @Inject constructor(
 
     fun buyProduct(product: Product) {
         viewModelScope.launch(Dispatchers.IO) {
-            cartRepository.insertProduct(product)
+//            cartRepository.insertProduct(product)
         }
     }
 
