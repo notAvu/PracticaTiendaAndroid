@@ -24,4 +24,8 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideCartDao(database:ShopDatabase)= database.getCartDao()
+
+    @Singleton
+    @Provides
+    fun provideProductCartDao(database: ShopDatabase)=database.getProductCartDao()
 }

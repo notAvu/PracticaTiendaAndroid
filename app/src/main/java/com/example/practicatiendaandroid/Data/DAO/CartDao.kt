@@ -10,9 +10,6 @@ import com.example.practicatiendaandroid.Data.realtion.CartWithProducts
 interface CartDao {
     @Query("SELECT * FROM cart_table")
     suspend fun getCartsList():List<CartEntity>
-    @Transaction
-    @Query("SELECT * FROM cart_table")
-    suspend fun getProductsInCart():List<CartWithProducts>
 
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    suspend fun insert(product:ProductEntity)
