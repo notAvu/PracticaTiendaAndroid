@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     app:cardBackgroundColor="@color/dark_card_bg"
     app:cardElevation="8dp"
     app:strokeColor="@color/cardview_dark_background">
@@ -63,26 +62,35 @@
 <!--                android:textColor="@color/purple_500"-->
 <!--                android:textSize="20dp" />-->
 
+<!--            <TextView-->
+<!--                android:id="@+id/material_details_card__description_text"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_marginHorizontal="10dp"-->
+<!--                android:layout_marginVertical="5dp"-->
+<!--                android:layout_weight="30"-->
+<!--                android:text="Testaco"-->
+<!--                android:textAppearance="?attr/textAppearanceBody2"-->
+<!--                android:textColor="@color/purple_500"-->
+<!--                android:textSize="20dp" />-->
+
             <TextView
-                android:id="@+id/material_details_card__description_text"
+                android:id="@+id/material_details_card__category"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
-                android:layout_weight="30"
-                android:text="Testaco"
+                android:layout_weight="50"
+                android:text="Categoria"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/purple_500"
                 android:textSize="20dp" />
-
             <TextView
                 android:id="@+id/material_details_card__unit_price"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="5dp"
                 android:layout_weight="50"
-                android:text="PrecioUnitario"
+                android:text="Precio unitario"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/purple_500"
                 android:textSize="20dp" />
@@ -90,13 +98,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="20">
+                android:layout_weight="60">
 
                 <TextView
                     android:id="@+id/material_details_card__product_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingTop="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="wrap_content"
                     android:text="500€"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/purple_500"
@@ -105,7 +113,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/material_details_card__buy_product"
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
                     android:layout_height="match_parent"
                     android:text="Buy Product"
                     android:textAlignment="textEnd"

@@ -20,7 +20,7 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.practicatiendaandroid.ui.Fragments.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/material_details_card" >
         <action
             android:id="@+id/action_detailsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />

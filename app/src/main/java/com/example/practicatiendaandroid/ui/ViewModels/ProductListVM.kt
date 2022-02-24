@@ -26,7 +26,7 @@ class ProductListVM @Inject constructor(
 
     fun buyProduct(product: Product) {
         viewModelScope.launch(Dispatchers.IO) {
-            cartRepository.insertProduct(product)
+//            cartRepository.insertProduct(product)
         }
     }
 
@@ -36,7 +36,7 @@ class ProductListVM @Inject constructor(
             productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
             vmProdList.postValue(productRepository.getAllProductsFromDatabase())
 //            vmCartItemList.postValue()
-            TODO("Implementar relacion en la bdd y pillar de ahi los productos del carro")
+//            TODO("Implementar relacion en la bdd y pillar de ahi los productos del carro")
         }
     }
 
