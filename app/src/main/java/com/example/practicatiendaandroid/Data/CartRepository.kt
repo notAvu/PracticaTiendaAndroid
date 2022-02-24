@@ -6,7 +6,10 @@ import com.example.practicatiendaandroid.Clases.toDomain
 import com.example.practicatiendaandroid.Data.DAO.CartDao
 import com.example.practicatiendaandroid.Data.DAO.ProductCartDAO
 import com.example.practicatiendaandroid.Data.Entities.CartEntity
+import com.example.practicatiendaandroid.Data.Entities.toDatabase
+import com.example.practicatiendaandroid.Data.Entities.toDatbase
 import com.example.practicatiendaandroid.Data.realtion.CartWithProducts
+import com.example.practicatiendaandroid.Data.realtion.ProductCart
 import javax.inject.Inject
 
 class CartRepository @Inject constructor(private val cartDao: CartDao, private val productCartDao: ProductCartDAO) {
@@ -19,7 +22,11 @@ class CartRepository @Inject constructor(private val cartDao: CartDao, private v
         return response[0].cartProductList.map { it.toDomain() }
     }
 
-//    suspend fun insertProduct(product: Product) {
-//        cartDao.insert(product.toDatbase())
-//    }
+    suspend fun insertProduct(product: Product) {
+        productCartDao.insertProductCart(ProductCart(product.id, 0))
+    }
+
+    suspend fun insertDefaultCart() {
+        cartDao.insert(Cart(0,false).toDatabase())
+    }
 }

@@ -49,12 +49,10 @@ class ProductList : Fragment() {
     }
 
     private fun OnProdListLoaded(productList:List<Product>) {
-        valBind.fragmentProductListRecyclerview.adapter = viewModel.vmProdList.value?.let {
-            ProductAdapter(
-                R.layout.material_card_product,
-                it
-            ) { onProductoSelected(it) }
-        }
+        valBind.fragmentProductListRecyclerview.adapter = ProductAdapter(
+            R.layout.material_card_product,
+            productList
+        ) { onProductoSelected(it) }
         viewModel.vmProdList.value?.forEach {
             val category = it.category
             if (!categoriesList.contains(category))

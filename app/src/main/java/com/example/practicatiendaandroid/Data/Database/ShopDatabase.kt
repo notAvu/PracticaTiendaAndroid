@@ -7,7 +7,6 @@ import com.example.practicatiendaandroid.Data.DAO.ProductCartDAO
 import com.example.practicatiendaandroid.Data.DAO.ProductDao
 import com.example.practicatiendaandroid.Data.Entities.CartEntity
 import com.example.practicatiendaandroid.Data.Entities.ProductEntity
-import com.example.practicatiendaandroid.Data.realtion.CartWithProducts
 import com.example.practicatiendaandroid.Data.realtion.ProductCart
 
 @Database(

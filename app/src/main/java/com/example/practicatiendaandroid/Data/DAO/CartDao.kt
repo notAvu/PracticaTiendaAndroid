@@ -11,7 +11,7 @@ interface CartDao {
     @Query("SELECT * FROM cart_table")
     suspend fun getCartsList():List<CartEntity>
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insert(product:ProductEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(cart:CartEntity)
 
 }
