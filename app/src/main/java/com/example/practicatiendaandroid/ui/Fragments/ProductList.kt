@@ -111,13 +111,11 @@ class ProductList : Fragment() {
     }
 
     private fun filterList(criteria: String, selectedCategory: String) {
-        val filteredProductlist: List<Product>
-        if(criteria == "Precio") {
-            filteredProductlist= viewModel.vmProdList.value!!.filter { product -> product.category==selectedCategory
+        val filteredProductlist: List<Product> = if(criteria == "Precio") {
+            viewModel.vmProdList.value!!.filter { product -> product.category==selectedCategory
             }.sortedBy { it.price }
-        }
-        else {
-            filteredProductlist= viewModel.vmProdList.value!!.filter { product -> product.category==selectedCategory
+        } else {
+            viewModel.vmProdList.value!!.filter { product -> product.category==selectedCategory
             }.sortedBy { it.productName }
         }
         updateListData(filteredProductlist)
