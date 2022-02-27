@@ -34,7 +34,7 @@ class ProductListVM @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             productRepository.deleteAllProducts()
             productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
-            cartRepository.insertDefaultCart()
+//            cartRepository.insertDefaultCart()
             vmProdList.postValue(productRepository.getAllProductsFromDatabase())
             vmCartItemList.postValue(cartRepository.getAllProductsFromCart())
         }

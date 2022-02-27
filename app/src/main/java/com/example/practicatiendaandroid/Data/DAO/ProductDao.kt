@@ -12,6 +12,8 @@ interface ProductDao {
 //    suspend fun getFilterPrice():ArrayList<ProductEntity>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllProducts(productList:List<ProductEntity>)
-    @Query("DELETE  FROM products_table ")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(product:ProductEntity)
+    @Query("DELETE  FROM products_table")
     suspend fun deleteAllProducts()
 }

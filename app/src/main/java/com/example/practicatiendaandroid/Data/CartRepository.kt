@@ -27,6 +27,6 @@ class CartRepository @Inject constructor(private val cartDao: CartDao, private v
     }
 
     suspend fun insertDefaultCart() {
-        cartDao.insert(Cart(0,false).toDatabase())
+        cartDao.insert(Cart(1,false).toDatabase())
     }
 }
