@@ -8,10 +8,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Fragments.ProductList">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.appbar.AppBarLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/fragment_product_list__app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -21,8 +28,8 @@
             app:menu="@menu/app_bar_menu"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             />
-
     </com.google.android.material.appbar.AppBarLayout>
+
         <!--        <androidx.appcompat.widget.SearchView-->
         <!--            android:id="@+id/fragment_product_list_searchview"-->
         <!--            app:layout_constraintLeft_toLeftOf="parent"-->
@@ -31,15 +38,18 @@
         <!--            android:layout_height="wrap_content"-->
         <!--            android:layout_width="match_parent"/>-->
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="60dp"
             android:id="@+id/fragment_product_list_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/fragment_product_list__app_bar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:spanCount="2" />
 
+</androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fragment_product_list__fab"
         android:layout_width="wrap_content"

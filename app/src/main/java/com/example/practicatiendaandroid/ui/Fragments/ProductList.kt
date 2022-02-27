@@ -3,6 +3,8 @@ package com.example.practicatiendaandroid.ui.Fragments
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -32,22 +34,32 @@ class ProductList : Fragment() {
         super.onCreate(savedInstanceState)
 //        arguments?.let {
 //        }
-//        setHasOptionsMenu(true)
-    }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.app_bar_menu, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.app_bar_menu__display_options -> {
-//                showFilterDialog()
-//                true
-//            }
-//            else -> true
-//        }
-//    }
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.app_bar_menu, menu)
+        val searchItem=menu.findItem(R.id.app_bar_menu__search_bar)
+        if(searchItem!=null){
+            val searchView=searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+//                    TODO("Hide bar")
+                    return true
+                }
+
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    val filteredProductlist: List<Product>? =
+                        viewModel.vmProdList.value?.filter { product -> product.productName.contains(p0.toString())
+                    }
+                    if (filteredProductlist != null) {
+                        updateListData(filteredProductlist)
+                    }
+                    return true
+                }
+            })
+        }
+        super.onCreateOptionsMenu(menu, inflater)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -98,7 +110,7 @@ class ProductList : Fragment() {
         )
         categoriesSpinner.adapter = filterAdapter
         orderCriteriaSpinner.adapter = orderByAdapter
-        MaterialAlertDialogBuilder(context!!)
+        MaterialAlertDialogBuilder(requireContext())
             .setTitle("Filtrar")
             .setView(filterDialog)
             .setCancelable(true)
