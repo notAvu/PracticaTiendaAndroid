@@ -30,7 +30,6 @@ class CartFragment : Fragment() {
     val detailsFragment=DetailsFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        detailsFragment.sharedElementEnterTransition=MaterialContainerTransform()
     }
 
     override fun onCreateView(

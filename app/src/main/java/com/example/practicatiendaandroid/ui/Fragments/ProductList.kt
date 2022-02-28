@@ -19,37 +19,33 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 
-
 class ProductList : Fragment() {
     private lateinit var navController: NavController
     private val viewModel: ProductListVM by activityViewModels()
     private var auxBinding: FragmentProductListBinding? = null
     private val valBind get() = auxBinding!!
-    private val detailsFragment = DetailsFragment()
     private var categoriesList = ArrayList<String>()
     lateinit var adapter: ProductAdapter
     private lateinit var filterButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        arguments?.let {
-//        }
-
+        setHasOptionsMenu(true)
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.app_bar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+
         val searchItem=menu.findItem(R.id.app_bar_menu__search_bar)
-        if(searchItem!=null){
             val searchView=searchItem.actionView as SearchView
             searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(p0: String?): Boolean {
-//                    TODO("Hide bar")
-                    return true
+                    return false
                 }
 
                 override fun onQueryTextChange(p0: String?): Boolean {
                     val filteredProductlist: List<Product>? =
-                        viewModel.vmProdList.value?.filter { product -> product.productName.contains(p0.toString())
+                        viewModel.vmProdList.value?.filter { product -> product.productName.contains("tot")
                     }
                     if (filteredProductlist != null) {
                         updateListData(filteredProductlist)
@@ -57,8 +53,6 @@ class ProductList : Fragment() {
                     return true
                 }
             })
-        }
-        super.onCreateOptionsMenu(menu, inflater)
     }
     override fun onCreateView(
         inflater: LayoutInflater,

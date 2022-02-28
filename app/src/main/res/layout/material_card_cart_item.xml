@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <ImageView
@@ -22,7 +22,7 @@
             app:srcCompat="@color/black" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
@@ -41,16 +41,6 @@
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/purple_500"
                     android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/list_element_product_units"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="x3"
-                    android:textAlignment="textEnd"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/purple_500"
-                    android:textSize="20dp" />
             </LinearLayout>
 
             <TextView
@@ -64,6 +54,12 @@
                 android:textSize="20dp" />
 
         </LinearLayout>
-
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="?attr/borderlessButtonStyle"
+            android:text="eliminar"
+            app:icon="@drawable/ic_baseline_remove_shopping_cart_24"
+            />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

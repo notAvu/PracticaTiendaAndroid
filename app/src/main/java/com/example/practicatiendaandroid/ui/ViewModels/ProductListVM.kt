@@ -36,7 +36,7 @@ class ProductListVM @Inject constructor(
             productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
 //            cartRepository.insertDefaultCart()
             vmProdList.postValue(productRepository.getAllProductsFromDatabase())
-            vmCartItemList.postValue(cartRepository.getAllProductsFromCart())
+            vmCartItemList.postValue(productRepository.getAllProductsFromDatabase())
         }
     }
 
