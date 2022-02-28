@@ -29,31 +29,34 @@ class ProductList : Fragment() {
     private lateinit var filterButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.onCreate()
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.app_bar_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
 
-        val searchItem=menu.findItem(R.id.app_bar_menu__search_bar)
-            val searchView=searchItem.actionView as SearchView
-            searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(p0: String?): Boolean {
-                    return false
-                }
+        val searchItem = menu.findItem(R.id.app_bar_menu__search_bar)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
 
-                override fun onQueryTextChange(p0: String?): Boolean {
-                    val filteredProductlist: List<Product>? =
-                        viewModel.vmProdList.value?.filter { product -> product.productName.contains("tot")
+            override fun onQueryTextChange(p0: String?): Boolean {
+                val filteredProductlist: List<Product>? =
+                    viewModel.vmProdList.value?.filter { product ->
+                        product.productName.contains("tot")
                     }
-                    if (filteredProductlist != null) {
-                        updateListData(filteredProductlist)
-                    }
-                    return true
+                if (filteredProductlist != null) {
+                    updateListData(filteredProductlist)
                 }
-            })
+                return true
+            }
+        })
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,7 +70,7 @@ class ProductList : Fragment() {
         return valBind.root
     }
 
-    private fun OnProdListLoaded(productList:List<Product>) {
+    private fun OnProdListLoaded(productList: List<Product>) {
         updateListData(productList)
         productList.forEach {
             val category = it.category
@@ -117,28 +120,35 @@ class ProductList : Fragment() {
     }
 
     private fun filterList(criteria: String, selectedCategory: String) {
-        val filteredProductlist: List<Product> = if(criteria == "Precio") {
-            viewModel.vmProdList.value!!.filter { product -> product.category==selectedCategory
+        val filteredProductlist: List<Product> = if (criteria == "Precio") {
+            viewModel.vmProdList.value!!.filter { product ->
+                product.category == selectedCategory
             }.sortedBy { it.price }
         } else {
-            viewModel.vmProdList.value!!.filter { product -> product.category==selectedCategory
+            viewModel.vmProdList.value!!.filter { product ->
+                product.category == selectedCategory
             }.sortedBy { it.productName }
         }
         updateListData(filteredProductlist)
     }
 
-    private fun showDetailsDialog(productClicked: Product){
+    private fun showDetailsDialog(productClicked: Product) {
         val detailsDialog = layoutInflater.inflate(R.layout.material_details_card, null)
-        val prodImage:ImageView=detailsDialog.findViewById(R.id.material_details_card__product_image)
-        val prodName:TextView=detailsDialog.findViewById(R.id.material_details_card__product_name)
-        val prodCategory:TextView=detailsDialog.findViewById(R.id.material_details_card__category)
-        val prodPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__product_price)
-        val buyButton: Button =detailsDialog.findViewById(R.id.material_details_card__buy_product)
-        val prodUnitPrice:TextView=detailsDialog.findViewById(R.id.material_details_card__unit_price)
-        prodName.text=productClicked.productName
-        prodUnitPrice.text=productClicked.unitPrice.toString()+"€/unidad"
-        prodPrice.text= productClicked.price.toString()+"€"
-        prodCategory.text=productClicked.category
+        val prodImage: ImageView =
+            detailsDialog.findViewById(R.id.material_details_card__product_image)
+        val prodName: TextView =
+            detailsDialog.findViewById(R.id.material_details_card__product_name)
+        val prodCategory: TextView =
+            detailsDialog.findViewById(R.id.material_details_card__category)
+        val prodPrice: TextView =
+            detailsDialog.findViewById(R.id.material_details_card__product_price)
+        val buyButton: Button = detailsDialog.findViewById(R.id.material_details_card__buy_product)
+        val prodUnitPrice: TextView =
+            detailsDialog.findViewById(R.id.material_details_card__unit_price)
+        prodName.text = productClicked.productName
+        prodUnitPrice.text = productClicked.unitPrice.toString() + "€/unidad"
+        prodPrice.text = productClicked.price.toString() + "€"
+        prodCategory.text = productClicked.category
         Picasso.get().load(productClicked.imageSrc).into(prodImage)
         buyButton.setOnClickListener {
             viewModel.buyProduct(productClicked)
@@ -155,9 +165,10 @@ class ProductList : Fragment() {
 //        navController.navigate(R.id.action_productList_to_detailsFragment)
     }
 
-    private fun updateListData(prodList:List<Product>){
-        adapter= ProductAdapter(R.layout.material_card_product,prodList){ onProductoSelected(it)}
-        valBind.fragmentProductListRecyclerview.adapter=adapter
+    private fun updateListData(prodList: List<Product>) {
+        adapter =
+            ProductAdapter(R.layout.material_card_product, prodList) { onProductoSelected(it) }
+        valBind.fragmentProductListRecyclerview.adapter = adapter
     }
 
     override fun onDestroyView() {

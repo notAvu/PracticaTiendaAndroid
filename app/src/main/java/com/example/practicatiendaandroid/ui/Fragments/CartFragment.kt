@@ -27,8 +27,8 @@ class CartFragment : Fragment() {
     private val viewModel: ProductListVM by activityViewModels()
     private var auxBinding: FragmentCartBinding?=null
     private val valBind get()=auxBinding!!
-    val detailsFragment=DetailsFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel.onCreate()
         super.onCreate(savedInstanceState)
     }
 

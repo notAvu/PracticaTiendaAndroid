@@ -20,14 +20,17 @@ class ProductListVM @Inject constructor(
     ViewModel() {
     val productSelected = MutableLiveData<Product>()
     val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
-    val vmCartItemList:MutableLiveData<List<Product>> = MutableLiveData()
+    val vmCartItemList:MutableLiveData<MutableList<Product>> = MutableLiveData()
     fun onCreate() {
+        if(vmCartItemList.value==null || vmCartItemList.value!!.size<1)
+            vmCartItemList.postValue( emptyList<Product>().toMutableList())
     }
 
     fun buyProduct(product: Product) {
-        viewModelScope.launch(Dispatchers.IO) {
-            cartRepository.insertProduct(product)
-        }
+        vmCartItemList.value?.add(product)
+//        viewModelScope.launch(Dispatchers.IO) {
+//            cartRepository.insertProduct(product)
+//        }
     }
 
     fun loadProducts() {
@@ -36,7 +39,6 @@ class ProductListVM @Inject constructor(
             productRepository.insertProducts(defaultProductList().map { it.toDatbase() })
 //            cartRepository.insertDefaultCart()
             vmProdList.postValue(productRepository.getAllProductsFromDatabase())
-            vmCartItemList.postValue(productRepository.getAllProductsFromDatabase())
         }
     }
 

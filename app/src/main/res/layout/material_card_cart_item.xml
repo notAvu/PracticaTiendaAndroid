@@ -55,6 +55,7 @@
 
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/list_element_product_buy_product"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             style="?attr/borderlessButtonStyle"
