@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.ProductListAdapter.NewProductAdapter
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
@@ -25,7 +26,7 @@ class ProductList : Fragment() {
     private var auxBinding: FragmentProductListBinding? = null
     private val valBind get() = auxBinding!!
     private var categoriesList = ArrayList<String>()
-    lateinit var adapter: ProductAdapter
+    lateinit var adapter: NewProductAdapter
     private lateinit var filterButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -167,7 +168,7 @@ class ProductList : Fragment() {
 
     private fun updateListData(prodList: List<Product>) {
         adapter =
-            ProductAdapter(R.layout.material_card_product, prodList) { onProductoSelected(it) }
+            NewProductAdapter(viewModel, R.layout.material_card_product, prodList) { onProductoSelected(it) }
         valBind.fragmentProductListRecyclerview.adapter = adapter
     }
 
