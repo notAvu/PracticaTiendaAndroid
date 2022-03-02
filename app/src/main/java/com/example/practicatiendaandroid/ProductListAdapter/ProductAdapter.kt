@@ -10,19 +10,27 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.R
+import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
 import com.squareup.picasso.Picasso
 
 class ProductAdapter(
+    private val viewModel: ProductListVM,
     private val layout:Int,
     private val dataSet: List<Product>,
     private val listener: (Product) -> Unit
 ) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val buyBtn: Button = view.findViewById(R.id.list_element_product_buy_product)
+        val deleteBtn: Button = view.findViewById(R.id.list_element_product_remove_product)
         val productName: TextView = view.findViewById(R.id.list_element_product_product_name)
         val productImage: ImageView = view.findViewById(R.id.list_element_product_product_image)
         val productPrice: TextView = view.findViewById(R.id.list_element_product_product_price)
+        fun removeItem(index:Int, viewModel: ProductListVM){
+            deleteBtn.setOnClickListener{
+                viewModel.removeProductFromCart(index)
+            }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +43,9 @@ class ProductAdapter(
         with(holder) {
             productName.text = dataSet[position].productName
             productPrice.text = dataSet[position].price.toString()+"€"
-            itemView.setOnClickListener { listener(dataSet[position]) }
+            itemView.setOnClickListener { listener(dataSet[position])
+            removeItem(position, viewModel)
+            }
         }
         Picasso.get().load(dataSet[position].imageSrc).into(holder.productImage)
     }

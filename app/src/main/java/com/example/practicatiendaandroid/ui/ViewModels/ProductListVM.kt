@@ -27,11 +27,12 @@ class ProductListVM @Inject constructor(
     }
 
     fun buyProduct(product: Product) {
-        if (vmCartItemList.value?.contains(product) == false)
+        if (!vmCartItemList.value!!.contains(product))
             vmCartItemList.value?.add(product)
-//        viewModelScope.launch(Dispatchers.IO) {
-//            cartRepository.insertProduct(product)
-//        }
+    }
+
+    fun removeProductFromCart(index: Int) {
+            vmCartItemList.value?.removeAt(index)
     }
 
     fun loadProducts() {

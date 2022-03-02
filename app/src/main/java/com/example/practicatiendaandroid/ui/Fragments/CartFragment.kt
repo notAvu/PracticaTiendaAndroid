@@ -47,7 +47,7 @@ class CartFragment : Fragment() {
         valBind.cartFragmentProductRecyclerView.apply {
             layoutManager=LinearLayoutManager(view.context)
             adapter= viewModel.vmCartItemList.value?.let {
-                ProductAdapter(R.layout.material_card_cart_item,
+                ProductAdapter(viewModel, R.layout.material_card_cart_item,
                     it
                 ){onProductoSelected(it)}
             }

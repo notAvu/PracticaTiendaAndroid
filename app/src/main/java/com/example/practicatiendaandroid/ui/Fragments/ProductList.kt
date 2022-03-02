@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
 import com.example.practicatiendaandroid.ProductListAdapter.NewProductAdapter
-import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentProductListBinding
 import com.example.practicatiendaandroid.ui.ViewModels.ProductListVM
@@ -34,29 +33,29 @@ class ProductList : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.app_bar_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-
-        val searchItem = menu.findItem(R.id.app_bar_menu__search_bar)
-        val searchView = searchItem.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                val filteredProductlist: List<Product>? =
-                    viewModel.vmProdList.value?.filter { product ->
-                        product.productName.contains("tot")
-                    }
-                if (filteredProductlist != null) {
-                    updateListData(filteredProductlist)
-                }
-                return true
-            }
-        })
-    }
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.app_bar_menu, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//
+//        val searchItem = menu.findItem(R.id.app_bar_menu__search_bar)
+//        val searchView = searchItem.actionView as SearchView
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(p0: String?): Boolean {
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(p0: String?): Boolean {
+//                val filteredProductlist: List<Product>? =
+//                    viewModel.vmProdList.value?.filter { product ->
+//                        product.productName.contains("tot")
+//                    }
+//                if (filteredProductlist != null) {
+//                    updateListData(filteredProductlist)
+//                }
+//                return true
+//            }
+//        })
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
