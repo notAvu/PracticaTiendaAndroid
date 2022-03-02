@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.map
 import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -51,6 +52,9 @@ class CartFragment : Fragment() {
                 ){onProductoSelected(it)}
             }
         }
+        var precioTotal=0F
+        viewModel.vmCartItemList.value?.map { precioTotal+=it.price }
+        valBind.cartFragmentPriceText.text= "Total: $precioTotal"
     }
 
     private fun onProductoSelected(productClicked: Product) {
