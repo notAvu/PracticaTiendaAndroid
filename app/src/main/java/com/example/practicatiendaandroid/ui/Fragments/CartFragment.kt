@@ -15,6 +15,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicatiendaandroid.Clases.Product
+import com.example.practicatiendaandroid.ProductListAdapter.NewProductAdapter
 import com.example.practicatiendaandroid.ProductListAdapter.ProductAdapter
 import com.example.practicatiendaandroid.R
 import com.example.practicatiendaandroid.databinding.FragmentCartBinding
@@ -28,6 +29,7 @@ class CartFragment : Fragment() {
     private val viewModel: ProductListVM by activityViewModels()
     private var auxBinding: FragmentCartBinding?=null
     private val valBind get()=auxBinding!!
+    lateinit var adapter:ProductAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel.onCreate()
         super.onCreate(savedInstanceState)
@@ -43,6 +45,7 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController=findNavController()
+        viewModel.vmCartItemList.observe(viewLifecycleOwner, this::OnListLoaded)
         viewModel.loadProducts()
         valBind.cartFragmentProductRecyclerView.apply {
             layoutManager=LinearLayoutManager(view.context)
@@ -55,6 +58,10 @@ class CartFragment : Fragment() {
         var precioTotal=0F
         viewModel.vmCartItemList.value?.map { precioTotal+=it.price }
         valBind.cartFragmentPriceText.text= "Total: $precioTotal"
+    }
+
+    private fun OnListLoaded(prodList: List<Product>) {
+        updateListData(prodList)
     }
 
     private fun onProductoSelected(productClicked: Product) {
@@ -76,6 +83,11 @@ class CartFragment : Fragment() {
             .setView(detailsDialog)
             .setCancelable(true)
             .show()
+    }
+    private fun updateListData(prodList: List<Product>) {
+        adapter =
+            ProductAdapter(viewModel, R.layout.material_card_cart_item, prodList) { onProductoSelected(it) }
+        valBind.cartFragmentProductRecyclerView.adapter = adapter
     }
     override fun onDestroyView() {
         super.onDestroyView()
