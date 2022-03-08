@@ -25,37 +25,23 @@ class ProductList : Fragment() {
     private var auxBinding: FragmentProductListBinding? = null
     private val valBind get() = auxBinding!!
     private var categoriesList = ArrayList<String>()
+    private val filteredProdList = ArrayList<Product>()
     lateinit var adapter: NewProductAdapter
     private lateinit var filterButton: FloatingActionButton
+    private lateinit var searchView:SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModel.onCreate()
         super.onCreate(savedInstanceState)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.app_bar_menu, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//
-//        val searchItem = menu.findItem(R.id.app_bar_menu__search_bar)
-//        val searchView = searchItem.actionView as SearchView
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(p0: String?): Boolean {
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(p0: String?): Boolean {
-//                val filteredProductlist: List<Product>? =
-//                    viewModel.vmProdList.value?.filter { product ->
-//                        product.productName.contains("tot")
-//                    }
-//                if (filteredProductlist != null) {
-//                    updateListData(filteredProductlist)
-//                }
-//                return true
-//            }
-//        })
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.app_bar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+
+        val searchItem = menu.findItem(R.id.app_bar_menu__search_bar)
+        val searchView = searchItem.actionView as SearchView
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,9 +50,34 @@ class ProductList : Fragment() {
     ): View {
         auxBinding = FragmentProductListBinding.inflate(inflater, container, false)
         filterButton = valBind.fragmentProductListFab
+        searchView = valBind.fragmentProductListSearchview
         filterButton.setOnClickListener {
             showFilterDialog()
         }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                filteredProdList.clear()
+                val searchText= p0!!.lowercase()
+                if(searchText.isNotEmpty() && searchText.isNotBlank()){
+                    viewModel.vmProdList.value!!.forEach {
+                        if(it.productName.lowercase().contains(searchText))
+                            filteredProdList.add(it)
+                    }
+                    valBind.fragmentProductListRecyclerview.adapter?.notifyDataSetChanged()
+                }else{
+                    filteredProdList.clear()
+                    filteredProdList.addAll(ArrayList(viewModel.vmProdList.value))
+                    valBind.fragmentProductListRecyclerview.adapter?.notifyDataSetChanged()
+                }
+                updateListData(filteredProdList)
+                return false
+//                return true
+            }
+        })
         return valBind.root
     }
 
@@ -86,6 +97,7 @@ class ProductList : Fragment() {
         viewModel.loadProducts()
         valBind.fragmentProductListRecyclerview.apply {
             layoutManager = GridLayoutManager(view.context, 2)
+
         }
     }
 
@@ -166,8 +178,7 @@ class ProductList : Fragment() {
     }
 
     private fun updateListData(prodList: List<Product>) {
-        adapter =
-            NewProductAdapter(viewModel, R.layout.material_card_product, prodList) { onProductoSelected(it) }
+        adapter = NewProductAdapter(viewModel, R.layout.material_card_product, prodList) { onProductoSelected(it) }
         valBind.fragmentProductListRecyclerview.adapter = adapter
     }
 

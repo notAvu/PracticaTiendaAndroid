@@ -24,11 +24,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container1) as NavHostFragment
         val navController = navHostFragment.navController
         val bottomNavigationView= findViewById<BottomNavigationView>(R.id.activity_main__bottom_navigation)
-
         bottomNavigationView.setupWithNavController(navController)
-        val badge = bottomNavigationView.getOrCreateBadge(R.id.cartFragment)
-        badge.isVisible = true
-        val uwu:ProductListVM by viewModels()
-        badge.number = uwu.cartCount.value!!
     }
 }

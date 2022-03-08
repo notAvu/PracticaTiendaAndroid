@@ -3,9 +3,7 @@ package com.example.practicatiendaandroid.ProductListAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicatiendaandroid.Clases.Product
@@ -16,10 +14,11 @@ import com.squareup.picasso.Picasso
 class NewProductAdapter(
     private val viewModel: ProductListVM,
     private val layout: Int,
-    private val dataSet: List<Product>,
+    val dataSet: List<Product>,
     private val listener: (Product) -> Unit
 ) :
     RecyclerView.Adapter<NewProductAdapter.ViewHolder>() {
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val buyBtn: Button = view.findViewById(R.id.list_element_product_buy_product)
         val productName: TextView = view.findViewById(R.id.list_element_product_product_name)
@@ -47,6 +46,8 @@ class NewProductAdapter(
         }
         Picasso.get().load(dataSet[position].imageSrc).into(holder.productImage)
     }
+    override fun getItemCount():Int{
+        return dataSet.size
+    }
 
-    override fun getItemCount() = dataSet.size
 }

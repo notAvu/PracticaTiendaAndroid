@@ -38,19 +38,21 @@
 <!--                android:layout_height="1dp" />-->
 <!--        </LinearLayout>-->
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintBottom_toTopOf="@id/precio"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="10dp">
             <androidx.recyclerview.widget.RecyclerView
-
+                app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/cart_fragment__product_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+                android:layout_height="match_parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,12 +62,10 @@
             android:orientation="vertical"
             android:id="@+id/precio"
             app:layout_constraintBottom_toBottomOf="parent">
-
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 app:dividerColor="@color/purple_500" />
-
             <TextView
                 android:id="@+id/cart_fragment__price_text"
                 android:layout_width="match_parent"

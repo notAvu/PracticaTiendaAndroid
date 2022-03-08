@@ -13,6 +13,12 @@
         android:layout_height="wrap_content"
         android:text="Ordenar por:"
         />
+
+    <Spinner
+        android:id="@+id/filter_dialog_layout__order_criteria_spinner"
+        android:layout_row="0"
+        android:layout_column="1"
+        />
     <TextView
         android:layout_column="0"
         android:layout_row="1"
@@ -23,12 +29,6 @@
     <Spinner
         android:id="@+id/filter_dialog_layout__categories_spinner"
         android:layout_row="1"
-        android:layout_column="1"
-        />
-
-    <Spinner
-        android:id="@+id/filter_dialog_layout__order_criteria_spinner"
-        android:layout_row="0"
         android:layout_column="1"
         />
 <!--    <com.google.android.material.button.MaterialButton-->

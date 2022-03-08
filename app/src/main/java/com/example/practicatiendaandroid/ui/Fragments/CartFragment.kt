@@ -44,6 +44,7 @@ class CartFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         navController=findNavController()
         viewModel.vmCartItemList.observe(viewLifecycleOwner, this::OnListLoaded)
         viewModel.loadProducts()

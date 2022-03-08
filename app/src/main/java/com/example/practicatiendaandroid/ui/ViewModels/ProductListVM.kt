@@ -22,9 +22,7 @@ class ProductListVM @Inject constructor(
     val productSelected = MutableLiveData<Product>()
     val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
     val vmCartItemList: MutableLiveData<MutableList<Product>> = MutableLiveData()
-    val cartCount: MutableLiveData<Int> = MutableLiveData()
     fun onCreate() {
-        cartCount.value=0
         if (vmCartItemList.value == null || vmCartItemList.value!!.size < 1)
             vmCartItemList.postValue(emptyList<Product>().toMutableList())
     }
@@ -32,7 +30,6 @@ class ProductListVM @Inject constructor(
     fun buyProduct(product: Product) {
         if (!vmCartItemList.value!!.contains(product)) {
             vmCartItemList.value!!.add(product)
-            cartCount.value = cartCount.value?.plus(1)
         }
     }
 
@@ -66,11 +63,11 @@ class ProductListVM @Inject constructor(
             1,
             Product(
                 2,
-                "Totoro uwu",
+                "Penicilina",
                 12F,
                 12F,
-                "Juguetes",
-                "https://cdn.shopify.com/s/files/1/0424/3544/4900/products/product-image-1585079422.jpg?v=1623132447"
+                "Dulces",
+                "https://enfermeriabuenosaires.com/wp-content/uploads/2019/02/penicilinasodica5-600x600-600x440.jpg"
             )
         )
         tempList.add(
@@ -88,36 +85,47 @@ class ProductListVM @Inject constructor(
             3,
             Product(
                 4,
-                "Silksong't",
+                "Colgáte",
                 42.5F,
                 23F,
-                "Videojuegos",
-                "https://pbs.twimg.com/media/FGN-4ouXwAA5ePY?format=jpg&name=small"
+                "Higiene",
+                "https://m.media-amazon.com/images/I/81xv8wGJ4yL._AC_SY355_.jpg"
             )
         )
         tempList.add(
             4,
             Product(
-                3,
+                6,
                 "Dalsy",
                 8F,
                 8F,
                 "Medicina",
-                "http://estaticos.elmundo.es/assets/multimedia/imagenes/2016/09/23/14746218702234.jpg"
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elcorreo.com%2Fbizkaia%2Fsociedad%2Fsalud%2F201609%2F19%2Fefectos-secundarios-colorante-dalsy-20160919190622.html&psig=AOvVaw0soIuWFPEcEV1HKJl_ReIs&ust=1646846763272000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKiq6KyEt_YCFQAAAAAdAAAAABAD"
             )
         )
         tempList.add(
             5,
             Product(
-                4,
-                "Curso aristidevs",
-                0F,
-                0F,
-                "Aristitruco",
-                "https://i.ytimg.com/vi/-xRWR_TVa28/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBgdsmdXcejgQUliXsZvEqNQob8rA"
+                5,
+                "Cristalmina",
+                10F,
+                10F,
+                "AAAAAAAAA",
+                "https://www.farmaciasoler.com/img/cache/400x400_cristalmina-10-mg-ml-solucion-para-pulverizacion-cutanea-1-frasco-de-25-ml-0.jpg"
             )
         )
 
+        tempList.add(
+            6,
+            Product(
+                7,
+                "Estus",
+                10F,
+                10F,
+                "Via oral",
+                "https://static.wikia.nocookie.net/dark-souls/images/5/5f/Frasco_de_estus_%28DSIII%29.png/revision/latest?cb=20170713011822&path-prefix=es"
+            )
+        )
         return tempList
     }
 }
