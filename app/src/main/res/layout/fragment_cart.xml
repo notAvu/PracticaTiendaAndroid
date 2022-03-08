@@ -1,46 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.Fragments.CartFragment">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/cart_fragment__price_text"
-            android:text="Subtotal: ta caro"
-            android:textSize="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cart_fragment__product_recycler_view"
+
+<!--        <LinearLayout-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:id="@+id/buttons"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent">-->
+
+<!--            <Button-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="5dp"-->
+<!--                android:layout_weight="5"-->
+<!--                android:text="confirmar" />-->
+
+<!--            <Button-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="5dp"-->
+<!--                android:layout_weight="5"-->
+<!--                android:text="cancelar" />-->
+
+<!--            <com.google.android.material.divider.MaterialDivider-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp" />-->
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/cart_fragment__product_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:text="confirmar"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:text="cancelar"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:background="@color/purple_700"
+            android:orientation="vertical"
+            android:id="@+id/precio"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/purple_500" />
+
+            <TextView
+                android:id="@+id/cart_fragment__price_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"
+                android:text="Subtotal: ta caro"
+                android:textAlignment="center"
+                android:textColor="@color/purple_200"
+                android:textSize="20dp" />
+
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -21,15 +21,15 @@ class ProductAdapter(
 ) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val deleteBtn: Button = view.findViewById(R.id.list_element_product_remove_product)
+//        val deleteBtn: Button = view.findViewById(R.id.list_element_product_remove_product)
         val productName: TextView = view.findViewById(R.id.list_element_product_product_name)
         val productImage: ImageView = view.findViewById(R.id.list_element_product_product_image)
         val productPrice: TextView = view.findViewById(R.id.list_element_product_product_price)
-        fun removeItem(index:Int, viewModel: ProductListVM){
-            deleteBtn.setOnClickListener{
-                viewModel.removeProductFromCart(index)
-            }
-        }
+//        fun removeItem(product:Product, viewModel: ProductListVM){
+//            deleteBtn.setOnClickListener{
+//                viewModel.removeProductFromCart(product)
+//            }
+//        }
 
     }
 
@@ -44,7 +44,7 @@ class ProductAdapter(
             productName.text = dataSet[position].productName
             productPrice.text = dataSet[position].price.toString()+"€"
             itemView.setOnClickListener { listener(dataSet[position])
-            removeItem(position, viewModel)
+//            removeItem(dataSet[position], viewModel)
             }
         }
         Picasso.get().load(dataSet[position].imageSrc).into(holder.productImage)

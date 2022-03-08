@@ -57,7 +57,7 @@ class CartFragment : Fragment() {
         }
         var precioTotal=0F
         viewModel.vmCartItemList.value?.map { precioTotal+=it.price }
-        valBind.cartFragmentPriceText.text= "Total: $precioTotal"
+        valBind.cartFragmentPriceText.text= "Total: $precioTotal €"
     }
 
     private fun OnListLoaded(prodList: List<Product>) {

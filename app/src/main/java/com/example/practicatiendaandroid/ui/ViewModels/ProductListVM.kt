@@ -1,5 +1,6 @@
 package com.example.practicatiendaandroid.ui.ViewModels
 
+import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,18 +22,22 @@ class ProductListVM @Inject constructor(
     val productSelected = MutableLiveData<Product>()
     val vmProdList: MutableLiveData<List<Product>> = MutableLiveData()
     val vmCartItemList: MutableLiveData<MutableList<Product>> = MutableLiveData()
+    val cartCount: MutableLiveData<Int> = MutableLiveData()
     fun onCreate() {
+        cartCount.value=0
         if (vmCartItemList.value == null || vmCartItemList.value!!.size < 1)
             vmCartItemList.postValue(emptyList<Product>().toMutableList())
     }
 
     fun buyProduct(product: Product) {
-        if (!vmCartItemList.value!!.contains(product))
-            vmCartItemList.value?.add(product)
+        if (!vmCartItemList.value!!.contains(product)) {
+            vmCartItemList.value!!.add(product)
+            cartCount.value = cartCount.value?.plus(1)
+        }
     }
 
-    fun removeProductFromCart(index: Int) {
-            vmCartItemList.value?.removeAt(index)
+    fun removeProductFromCart(product: Product) {
+        vmCartItemList.value!!.remove(product)
     }
 
     fun loadProducts() {
