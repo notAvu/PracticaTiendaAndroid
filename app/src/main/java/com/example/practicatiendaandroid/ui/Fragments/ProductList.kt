@@ -123,7 +123,7 @@ class ProductList : Fragment() {
             .setTitle("Filtrar")
             .setView(filterDialog)
             .setCancelable(true)
-            .setPositiveButton("Filtrar") { _, _ ->
+            .setPositiveButton("Filtrar") { asidhas, qerqwer ->
                 val criteria: String = orderCriteriaSpinner.selectedItem.toString()
                 val category: String = categoriesSpinner.selectedItem.toString()
                 filterList(criteria, category)
